@@ -36,15 +36,14 @@ class Controller_Result extends Controller_Template
 		Auth::create_user('Arthur', 'arthur1996', 'arthur_classic1hope@docomo.ne.jp', 1, ['screen_name' => 'Arthur']);
 	}
 
-	public function action_article($game_id = null)
+	public function action_article($game_id)
 	{
-		$this->template->title = date('Y/m/d H:i').'の結果';
 		$this->template->contents = View::forge('result/article');
 		Asset::js(['result/article.js'], [], 'add_js');
 		$overview_query = DB::select()
-					->from('result_overview')
-					->where('game_id', '=', $game_id)
-					->limit(1);
+							->from('result_overview')
+							->where('game_id', '=', $game_id)
+							->limit(1);
 		try
 		{
 			$overview_data = $overview_query->execute()->as_array();
@@ -58,6 +57,7 @@ class Controller_Result extends Controller_Template
 		{
 			throw new HttpNotFoundException;
 		}
+		$this->template->title = date('Y/m/d H:i', $game_id).'の結果';
 		$players_query = DB::select()
 						->from('result_players')
 						->where('game_id', '=', $game_id)
