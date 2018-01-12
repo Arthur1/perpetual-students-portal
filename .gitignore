@@ -22,11 +22,15 @@
 
 # 以下追記
 
-# アップロードファイル
+# Upload Files
 /public/assets/img/upload/*
 !/public/assets/img/upload/.gitkeep
 /public/assets/img/upload/*/*
 !/public/assets/img/upload/*/.gitkeep
 
-# security
+# Security
 /fuel/app/config/*/db.php
+
+# Session
+/fuel/app/session/*
+!/fuel/app/session/.gitkeep
