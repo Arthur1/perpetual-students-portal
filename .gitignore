@@ -19,3 +19,14 @@
 /fuel/app/logs/*/*/*
 /fuel/app/cache/*/*
 /fuel/app/config/crypt.php
+
+# 以下追記
+
+# アップロードファイル
+/public/assets/img/upload/*
+!/public/assets/img/upload/.gitkeep
+/public/assets/img/upload/*/*
+!/public/assets/img/upload/*/.gitkeep
+
+# security
+/fuel/app/config/*/db.php
