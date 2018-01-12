@@ -53,7 +53,7 @@ class Controller_Result extends Controller_Template
 		{
 			throw new HttpNotFoundException;
 		}
-		$this->template->title = date('Y/m/d H:i', $game_id).'の結果';
+		$this->template->title = date('Y/m/d', $game_id).'の結果';
 		$players_query = DB::select()
 						->from('result_players')
 						->where('game_id', '=', $game_id)
@@ -198,7 +198,7 @@ class Controller_Result extends Controller_Template
 			$card_data[$field] = array_filter($card_data[$field], 'strlen');
 			$card_data[$field] = array_values($card_data[$field]);
 			Session::set_flash($field, $card_data[$field]);
-			Session::keep_flash($field);
+			// Session::keep_flash($field);
 		}
 		foreach ($this->additional_fields as $field)
 		{
