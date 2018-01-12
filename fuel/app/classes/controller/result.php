@@ -31,10 +31,6 @@ class Controller_Result extends Controller_Template
 		'player_order',
 		'image_path',
 	];
-	public function action_index()
-	{
-		Auth::create_user('Arthur', 'arthur1996', 'arthur_classic1hope@docomo.ne.jp', 1, ['screen_name' => 'Arthur']);
-	}
 
 	public function action_article($game_id)
 	{
@@ -202,7 +198,7 @@ class Controller_Result extends Controller_Template
 			$card_data[$field] = array_filter($card_data[$field], 'strlen');
 			$card_data[$field] = array_values($card_data[$field]);
 			Session::set_flash($field, $card_data[$field]);
-			// Session::keep_flash($field);
+			Session::keep_flash($field);
 		}
 		foreach ($this->additional_fields as $field)
 		{
