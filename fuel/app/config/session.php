@@ -29,7 +29,7 @@ return array(
 	'auto_initialize'	=> true,
 
 	// if no session type is requested, use the default
-	'driver'			=> 'file',
+	'driver'			=> 'db',
 
 	// check for an IP address match after loading the cookie (optional, default = false)
 	'match_ip'			=> false,
@@ -91,7 +91,7 @@ return array(
 	// specific configuration settings for file based sessions
 	'file'				=> array(
 		'cookie_name'		=> 'fuelfid',				// name of the session cookie for file based sessions
-		'path'				=>	APPPATH.'session',					// path where the session files should be stored
+		'path'				=>	APPPATH.'/session',					// path where the session files should be stored
 		'gc_probability'	=>	5,						// probability % (between 0 and 100) for garbage collection
 						),
 

@@ -79,7 +79,7 @@ return array(
 	 */
 	'language'           => 'ja', // Default language
 	// 'language_fallback'  => 'en', // Fallback language when file isn't available for default language
-	'locale'             => 'ja_JP.UTF-8', // PHP set_locale() setting, null to not set
+	// 'locale'             => 'ja_JP.UTF-8', // PHP set_locale() setting, null to not set
 
 	/**
 	 * Internal string encoding charset
@@ -123,7 +123,7 @@ return array(
 		/**
 		 * A salt to make sure the generated security tokens are not predictable
 		 */
-		'token_salt'            => 'R52epawZ5DTjTKMbS8H8',
+		// 'token_salt'            => 'put your salt value here to make the token more secure',
 
 		/**
 		 * Allow the Input class to use X headers when present
@@ -188,7 +188,7 @@ return array(
 	/**
 	 * Cookie settings
 	 */
-	'cookie' => array(
+	// 'cookie' => array(
 		// Number of seconds before the cookie expires
 		// 'expiration'  => 0,
 		// Restrict the path that the cookie is available to
@@ -198,8 +198,8 @@ return array(
 		// Only transmit cookies over secure connections
 		// 'secure'      => false,
 		// Only transmit cookies over HTTP, disabling Javascript access
-		'http_only'   => true,
-	),
+		// 'http_only'   => false,
+	// ),
 
 	/**
 	 * Validation settings
@@ -273,9 +273,9 @@ return array(
 		 * );
 		 */
 		'packages'  => array(
-			//'orm',
-			'auth',
-			'email',
+		 	//'orm',
+		 	'auth',
+		 	'email',
 		),
 
 		/**

@@ -43,10 +43,10 @@ class Controller_Register extends Controller_Template
 			$data[$field] = Session::get_flash($field);
 			Session::keep_flash($field);
 		}
-		if ($data['username'] === null)
+		/*if ($data['username'] === null)
 		{
 			throw new HttpNotFoundException;
-		}
+		}*/
 		$this->template->contents->data = $data;
 		if (Input::post('return'))
 		{
