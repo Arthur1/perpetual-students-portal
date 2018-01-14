@@ -106,6 +106,44 @@ class Controller_Result extends Controller_Template
 		$this->template->contents->major_improvements_data = $major_improvements_data;
 	}
 
+	public function action_list($page = 1)
+	{
+		$num = 10;
+		$this->template->title = 'ゲーム一覧';
+		$this->template->contents = View::forge('result/list');
+		$count_query = DB::select(DB::expr('COUNT(*) as count'))
+						->from('result_overview');
+		try
+		{
+			$count = $count_query->execute()->as_array()[0]['count'];
+		}
+		catch (DatabaseException $e)
+		{
+			die('DB Error');
+		}
+		if ($page - 1 > intdiv($count, $num))
+		{
+			throw new HttpNotFoundException;
+		}
+		$data_query = DB::select()
+					->from('result_overview')
+					->order_by('game_id', 'desc')
+					->limit($num)
+					->offset(($page - 1) * $num);
+		try
+		{
+			$data = $data_query->execute()->as_array();
+		}
+		catch (DatabaseException $e)
+		{
+			die('DB Error');
+		}
+		$this->template->contents->num = $num;
+		$this->template->contents->page = $page;
+		$this->template->contents->count = $count;
+		$this->template->contents->data = $data;
+	}
+
 	public function action_edit($game_id, $player_order)
 	{
 		Authplus::check_and_redirect([1]);
@@ -151,7 +189,6 @@ class Controller_Result extends Controller_Template
 				$this->template->contents->error = $val->error();
 				return;
 			}
-			Debug::dump(Input::file(('image')));
 			if (Input::file('image')['name'] !== '')
 			{
 				Upload::process([
