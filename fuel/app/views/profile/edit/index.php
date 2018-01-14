@@ -1,4 +1,7 @@
 <h1 class="orange-text text-darken-2">プロフィール編集</h1>
+<p>
+	アイコンの変更は<?= Html::anchor('profile/changeimage', 'こちら'); ?>
+</p>
 <?php if (isset($error)): ?>
 <h2 class="red-text">エラー</h2>
 <?= Html::ul((array) $error, ['class' => 'red-text']); ?>
