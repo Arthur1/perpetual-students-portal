@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title><?= isset($title) ? $title : ''; ?></title>
+	<title><?= isset($title) ? $title : ' - ぶらつき学生ポータル'; ?></title>
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!--Import materialize.css-->
@@ -15,7 +15,26 @@
 <header class="navbar-fixed">
 	<nav>
 		<div class="nav-wrapper orange">
-			<a href="#" class="brand-logo left">ぶらつき学生ポータル</a>
+			<?= Html::anchor('', 'ぶらつき学生ポータル', ['class' => 'brand-logo left']); ?>
+			<a href="#" data-activates="mobile-menu" class="button-collapse right"><i class="material-icons">menu</i></a>
+			<ul class="side-nav" id="mobile-menu">
+				<li><?= Html::anchor('result/list', 'ゲーム結果'); ?></li>
+				<li><?= Html::anchor('profile/list', '部員一覧'); ?></li>
+				<?php if (Authplus::check([1])): ?>
+				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
+				<?php else: ?>
+				<li><?= Html::anchor('login', 'ログイン'); ?></li>
+				<?php endif; ?>
+			</ul>
+			<ul class="right hide-on-med-and-down">
+				<li><?= Html::anchor('result/list', 'ゲーム結果'); ?></li>
+				<li><?= Html::anchor('profile/list', '部員一覧'); ?></li>
+				<?php if (Authplus::check([1])): ?>
+				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
+				<?php else: ?>
+				<li><?= Html::anchor('login', 'ログイン'); ?></li>
+				<?php endif; ?>
+			</ul>
 		</div>
 	</nav>
 </header>
@@ -33,7 +52,7 @@
 	</div>
 	<div class="footer-copyright">
 		<div class="container">
-			&copy; 2017 Arthur
+			&copy; 2018 ぶらつき学生連盟
 		</div>
 	</div>
 </footer>
@@ -41,6 +60,11 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <?= Asset::js('materialize.min.js'); ?>
 <?= Asset::js('footerFixed.js'); ?>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".button-collapse").sideNav();
+});
+</script>
 <?= Asset::render('add_js'); ?>
 </body>
 </html>
