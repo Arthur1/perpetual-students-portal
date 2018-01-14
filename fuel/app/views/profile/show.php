@@ -15,7 +15,7 @@
 			<dt class="green-text text-darken-1">Twitter</dt>
 			<dd><?= Html::anchor('https://twitter.com/'.$data['twitter_id'], '@'.$data['twitter_id'], ['target' => '_blank']); ?></dd>
 			<?php endif;?>
-			<?php if ($data['colr'] !== null and$data['color'] !== ''): ?>
+			<?php if ($data['color'] !== null and$data['color'] !== ''): ?>
 			<dt class="green-text text-darken-1">好きな駒の色</dt>
 			<dd><?= $data['color']; ?></dd>
 			<?php endif; ?>
