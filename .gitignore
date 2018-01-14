@@ -27,6 +27,7 @@
 !/public/assets/img/upload/.gitkeep
 /public/assets/img/upload/*/*
 !/public/assets/img/upload/*/.gitkeep
+!/public/assets/img/upload/profile/noimage.png
 
 # Security
 /fuel/app/config/*/db.php
