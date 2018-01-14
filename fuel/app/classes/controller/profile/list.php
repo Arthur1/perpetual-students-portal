@@ -5,6 +5,7 @@ class Controller_Profile_List extends Controller_Template
 	{
 		$query = DB::select()
 					->from('users_profile')
+					->where('user_id', '!=', 'Guest')
 					->order_by('user_id', 'asc');
 		try
 		{
