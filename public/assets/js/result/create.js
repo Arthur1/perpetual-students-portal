@@ -7,7 +7,7 @@ $(document).ready(function() {
     }).then(function(data) {
     	var list = {};
     	for (let record of data) {
-    		list[record.user_id] = '/assets/img/upload/profile/' + record.icon;
+    		list[record.user_id] = '/assets/img/' + record.icon;
     	}
         $('input').autocomplete({
 			data: list,

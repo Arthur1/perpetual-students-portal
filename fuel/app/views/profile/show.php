@@ -2,9 +2,9 @@
 <div class="row">
 	<div class="col s12 m4">
 		<?php if ($data['icon'] !== null and $data['icon'] !== ''): ?>
-			<?= Asset::img('upload/profile/'.$data['icon'], ['class' => 'responsive-img circle']); ?>
+			<?= Asset::img($data['icon'], ['class' => 'responsive-img circle']); ?>
 		<?php else: ?>
-			NO IMAGE
+			<?= Asset::img('noimage.png', ['class' => 'responsive-img circle']); ?>
 		<?php endif; ?>
 	</div>
 	<div class="col s12 m8">

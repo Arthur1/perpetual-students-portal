@@ -39,7 +39,7 @@ class Controller_Profile_Changeimage extends Controller_Template
 			}
 			Upload::save();
 			$query = DB::update('users_profile')
-						->set(['icon' => Upload::get_files('image')['saved_as']])
+						->set(['icon' => 'upload/profile/'.Upload::get_files('image')['saved_as']])
 						->where('user_id', '=', Auth::get_screen_name());
 			try
 			{

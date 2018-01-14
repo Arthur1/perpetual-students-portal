@@ -77,6 +77,7 @@ class Controller_Register extends Controller_Template
 					->set([
 						'user_id' => $data['username'],
 						'screen_name' => $data['screen_name'],
+						'icon' => 'noimage.png',
 					])->execute();
 			}
 			catch (SimpleUserUpdateException $e)
