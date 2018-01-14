@@ -7,8 +7,7 @@ class Controller_Profile extends Controller_Template
 		$view = View::forge('profile/show');
 		$query = DB::select()
 					->from('users_profile')
-					->where('user_id', '=', $user_id)
-					->limit(1);
+					->where('user_id', '=', $user_id);
 		try
 		{
 			$data = $query->execute()->as_array();
