@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title><?= isset($title) ? $title : ' - ぶらつき学生ポータル'; ?></title>
+	<title><?= isset($title) ? $title : ''; ?> - ぶらつき学生ポータル</title>
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!--Import materialize.css-->
