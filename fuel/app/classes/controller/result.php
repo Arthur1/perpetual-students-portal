@@ -222,6 +222,10 @@ class Controller_Result extends Controller_Template
 				$this->template->contents->error = 'お手数ですが、再度送信してください。';
 				return;
 			}
+			$player_query = DB::update('result_players')
+								->set(['is_edited' => 1])
+								->where('game_id', '=', $score_data['game_id'])
+								->and_where('player_order', '=', $score_data['player_order']);
 			$score_query = DB::insert('result_score')->set($score_data);
 			$occupations_query = DB::insert('result_occupations')
 									->columns([
@@ -267,6 +271,7 @@ class Controller_Result extends Controller_Template
 			}
 			try
 			{
+				$player_query->execute();
 				$score_query->execute();
 				if ($card_data['occupations'] !== [])
 				{
