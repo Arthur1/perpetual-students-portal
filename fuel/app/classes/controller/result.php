@@ -263,6 +263,10 @@ class Controller_Result extends Controller_Template
 								->set(['is_edited' => 1])
 								->where('game_id', '=', $score_data['game_id'])
 								->and_where('player_order', '=', $score_data['player_order']);
+			if ($score_data['horses'] === '')
+			{
+				unset($score_data['horses']);
+			}
 			$score_query = DB::insert('result_score')->set($score_data);
 			$occupations_query = DB::insert('result_occupations')
 									->columns([
