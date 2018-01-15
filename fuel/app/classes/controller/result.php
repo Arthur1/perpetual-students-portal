@@ -369,44 +369,44 @@ class Controller_Result extends Controller_Template
 		{
 			$val->add($field, $label)
 				->add_rule('required')
-				->add_rule('valid_string', ['numeric'])
+				->add_rule('valid_string', ['numeric', 'dashes'])
 				->add_rule('numeric_between', -1, 4);
 		}
 		$val->add('horses', '馬')
-			->add_rule('valid_string', ['numeric'])
+			->add_rule('valid_string', ['numeric', 'dashes'])
 			->add_rule('numeric_min', -1);
 		$val->add('unused_spaces', '未使用スペース')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric'])
+			->add_rule('valid_string', ['numeric', 'dashes'])
 			->add_rule('numeric_max', 0);
 		$val->add('stables', '柵に囲まれた厩')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric'])
+			->add_rule('valid_string', ['numeric', 'dashes'])
 			->add_rule('numeric_between', 0, 4);
 		$val->add('houses', '家')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric'])
+			->add_rule('valid_string', ['numeric', 'dashes'])
 			->add_rule('numeric_min', 0);
 		$val->add('family', '家族')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric'])
+			->add_rule('valid_string', ['numeric', 'dashes'])
 			->add_rule('numeric_between', 0, 15);
 		$val->add('begging', '物乞いカード')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric'])
+			->add_rule('valid_string', ['numeric', 'dashes'])
 			->add_rule('numeric_max', 0);
 		$val->add('card_points', 'カード点')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric']);
+			->add_rule('valid_string', ['numeric', 'dashes']);
 		$val->add('bonus_points', 'ボーナス点')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric']);
+			->add_rule('valid_string', ['numeric', 'dashes']);
 		$val->add('total_score', '合計点')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric']);
+			->add_rule('valid_string', ['numeric', 'dashes']);
 		$val->add('rank', '順位')
 			->add_rule('required')
-			->add_rule('valid_string', ['numeric'])
+			->add_rule('valid_string', ['numeric', 'dashes'])
 			->add_rule('numeric_between', 1, 5);
 		return $val;
 	}
