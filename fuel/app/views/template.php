@@ -20,6 +20,7 @@
 			<ul class="side-nav" id="mobile-menu">
 				<li><?= Html::anchor('result/list', 'ゲーム結果'); ?></li>
 				<li><?= Html::anchor('profile/list', '部員一覧'); ?></li>
+				<li><?= Html::anchor('document', '記事'); ?></li>
 				<?php if (Authplus::check([1])): ?>
 				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
 				<?php else: ?>
@@ -29,6 +30,7 @@
 			<ul class="right hide-on-med-and-down">
 				<li><?= Html::anchor('result/list', 'ゲーム結果'); ?></li>
 				<li><?= Html::anchor('profile/list', '部員一覧'); ?></li>
+				<li><?= Html::anchor('document', '記事'); ?></li>
 				<?php if (Authplus::check([1])): ?>
 				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
 				<?php else: ?>

@@ -9,6 +9,8 @@
 			<div class="card-content">
 				<span class="card-title green-text text-darken-1">更新履歴</span>
 				<dl>
+					<dt>2018/01/23</dt>
+					<dd><?= Html::anchor('document', '記事'); ?>を追加しました！</dd>
 					<dt>2018/01/15</dt>
 					<dd>サイトを公開しました！</dd>
 				</dl>
@@ -19,6 +21,7 @@
 		<h2 class="green-text text-darken-1">リンク集</h2>
 		<div class="collection">
 			<a href="http://www.nicovideo.jp/watch/sm31916243" target="_blank" class="collection-item">愛人と骨細工でBEMYBABY</a>
+			<a href="http://www.nicovideo.jp/watch/sm32626383" target="_blank" class="collection-item">【アグリコラ民謡】世界には愛人がいない</a>
 		</div>
 	</div>
 </div>
