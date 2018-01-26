@@ -10,6 +10,14 @@
 	<?= Asset::render('add_css'); ?>
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/icon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+	<link rel="manifest" href="/assets/icon/manifest.json">
+	<link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#f59b35">
+	<link rel="shortcut icon" href="/assets/icon/favicon.ico">
+	<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
+	<meta name="theme-color" content="#ff9800">
 </head>
 <body>
 <header class="navbar-fixed">
