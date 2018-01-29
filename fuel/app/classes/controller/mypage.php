@@ -32,4 +32,10 @@ class Controller_Mypage extends Controller_Template
 		$view->guest_games = $guest_games;
 		$this->template->contents = $view;
 	}
+
+	public function action_help()
+	{
+		$this->template->title = 'ヘルプ';
+		$this->template->contents = View::forge('mypage/help');
+	}
 }
