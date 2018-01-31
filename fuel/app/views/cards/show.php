@@ -29,7 +29,7 @@ $major_improvements_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
 	<dd><?= nl2br($card_data['description']); ?></dd>
 </dl>
 <?php if (Authplus::check([1])): ?>
-<?= Html::anchor('#', 'カード評価を入力する'); ?>
+<?= Html::anchor('/cards/edit/'.$card_id, 'カード評価を入力する'); ?>
 <?php endif; ?>
 <h2 class="green-text text-darken-1">カード評価</h2>
 <?php if ($opinions_data !== []): ?>
