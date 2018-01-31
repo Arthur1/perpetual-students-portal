@@ -6,14 +6,79 @@ class Controller_Cards extends Controller_Template
 		'opinion',
 	];
 
-	public function action_list()
+	public function action_list($page = 1)
 	{
-
+		$num = 30;
+		$this->template->title = 'カード一覧';
+		$this->template->contents = View::forge('cards/list');
+		$count_query = DB::select(DB::expr('COUNT(*) as count'))
+						->from('cards_list');
+		try
+		{
+			$count = $count_query->execute()->as_array()[0]['count'];
+		}
+		catch (DatabaseException $e)
+		{
+			die('DB Error');
+		}
+		if ($page - 1 > intdiv($count, $num))
+		{
+			throw new HttpNotFoundException;
+		}
+		$data_query = DB::select()
+					->from('cards_list')
+					->order_by('card_id', 'asc')
+					->limit($num)
+					->offset(($page - 1) * $num);
+		try
+		{
+			$data = $data_query->execute()->as_array();
+		}
+		catch (DatabaseException $e)
+		{
+			die('DB Error');
+		}
+		$this->template->contents->num = $num;
+		$this->template->contents->page = $page;
+		$this->template->contents->count = $count;
+		$this->template->contents->data = $data;
 	}
 
 	public function action_search()
 	{
-
+		$this->template->title = 'カード検索';
+		$this->template->contents = View::forge('cards/search');
+		$data_query = DB::select()
+			->from('cards_list');
+		if (Input::get('card_id') != null)
+		{
+			$data_query->and_where('card_id', 'like', '%'.Input::get('card_id').'%');
+		}
+		if (Input::get('japanese_name') != null)
+		{
+			$data_query->and_where('japanese_name', 'like', '%'.Input::get('japanese_name').'%');
+		}
+		if (Input::get('occupations') === '1' and Input::get('improvements') !== '1')
+		{
+			$data_query->and_where('type', '=', 'occupations');
+		}
+		elseif (Input::get('occupations') !== '1' and Input::get('improvements') === '1')
+		{
+			$data_query->and_where('type', '=', 'improvements');
+		}
+		elseif (Input::get('occupations') !== '1' and Input::get('improvements') !== '1')
+		{
+			$data_query->and_where('type', '=', 'unchi');
+		}
+		try
+		{
+			$data = $data_query->execute()->as_array();
+		}
+		catch (DatabaseException $e)
+		{
+			die('DB Error');
+		}
+		$this->template->contents->data = $data;
 	}
 
 	public function action_show($card_id)

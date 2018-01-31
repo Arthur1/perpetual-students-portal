@@ -111,6 +111,7 @@
 					<?php endif; ?>
 				</dl>
 				<div><?= nl2br($occupations_data[$key]['description']); ?></div>
+				<?= Html::anchor('cards/show/'.$occupations_data[$key]['occupation_id'], 'カードの詳細ページを見る'); ?>
 				<?php endif; ?>
 				</div>
 			</div>
@@ -151,6 +152,7 @@
 					<?php endif; ?>
 				</dl>
 				<div><?= nl2br($minor_improvements_data[$key]['description']); ?></div>
+				<?= Html::anchor('cards/show/'.$minor_improvements_data[$key]['improvement_id'], 'カードの詳細ページを見る'); ?>
 				<?php endif; ?>
 				</div>
 			</div>
@@ -191,6 +193,7 @@
 					<?php endif; ?>
 				</dl>
 				<div><?= nl2br($major_improvements_data[$key]['description']); ?></div>
+				<?= Html::anchor('cards/show/'.$major_improvements_data[$key]['improvement_id'], 'カードの詳細ページを見る'); ?>
 				<?php endif; ?>
 				</div>
 			</div>
