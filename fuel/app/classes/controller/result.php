@@ -121,7 +121,7 @@ class Controller_Result extends Controller_Template
 		{
 			die('DB Error');
 		}
-		if ($page - 1 > intdiv($count, $num))
+		if ($page > ceil($count / $num) or $page <= 0)
 		{
 			throw new HttpNotFoundException;
 		}

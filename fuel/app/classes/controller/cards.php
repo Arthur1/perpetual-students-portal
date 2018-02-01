@@ -21,7 +21,7 @@ class Controller_Cards extends Controller_Template
 		{
 			die('DB Error');
 		}
-		if ($page - 1 > intdiv($count, $num))
+		if ($page > ceil($count / $num) or $page <= 0)
 		{
 			throw new HttpNotFoundException;
 		}
@@ -70,6 +70,7 @@ class Controller_Cards extends Controller_Template
 		{
 			$data_query->and_where('type', '=', 'unchi');
 		}
+		$data_query->order_by('card_id', 'asc');
 		try
 		{
 			$data = $data_query->execute()->as_array();

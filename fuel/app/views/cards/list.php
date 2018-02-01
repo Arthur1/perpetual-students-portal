@@ -31,11 +31,14 @@
 				<?php else: ?>
 				<button class="btn disabled">前のページ</button>
 				<?php endif; ?>
-				<?php if ($page < intdiv($count, $num)): ?>
+				<?php if ($page < ceil($count / $num)): ?>
 				<?= Html::anchor('cards/list/'.($page + 1), '次のページ', ['class' => 'btn green']); ?>
 				<?php else: ?>
 				<button class="btn disabled">次のページ</button>
 				<?php endif; ?>
+			</div>
+			<div class="col s12">
+				<?= $page; ?> / <?= ceil($count / $num); ?>ページ
 			</div>
 		</div>
 	</div>
