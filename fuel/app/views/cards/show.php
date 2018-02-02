@@ -33,7 +33,7 @@
 <div class="collection">
 	<?php if ($average !== null): ?>
 	<div class="collection-item">
-		平均：<span style="font-size: 1.5rem; line-height: 2rem;"><?= round($average, 1); ?>点</span>
+		平均評価：<span style="font-size: 1.5rem; line-height: 2rem;"><?= sprintf('%.1f', round($average, 1)); ?>点</span>
 	</div>
 	<?php endif; ?>
 <?php foreach ($opinions_data as $record): ?>
@@ -52,13 +52,13 @@
 <?php else: ?>
 <p>まだこのカードに対する評価が入力されていません。</p>
 <?php endif; ?>
-<h2 class="green-text text-darken-1">使われたゲーム</h2>
+<h2 class="green-text text-darken-1">使用されたゲーム</h2>
 <?php if ($game_data === []): ?>
 <p>まだこのカードは使用されていません。</p>
 <?php else: ?>
 <div class="collection">
 	<div class="collection-item">
-		使用された総回数：<?= count($game_data); ?>回
+		使用された総回数：<span style="font-size: 1.5rem; line-height: 2rem;"><?= count($game_data); ?>回</span>
 	</div>
 	<?php foreach ($game_data as $record): ?>
 	<a href="/result/article/<?= $record['game_id']."#player".$record['player_order']; ?>" class="collection-item avatar">
