@@ -9,6 +9,8 @@
 			<div class="card-content">
 				<span class="card-title green-text text-darken-1">更新履歴</span>
 				<dl>
+					<dt>2018/02/03</dt>
+					<dd><?= Html::anchor('ranking', '統計'); ?>を追加しました！各種ランキングを確認できます。</dd>
 					<dt>2018/02/01</dt>
 					<dd><?= Html::anchor('cards/list', 'カード一覧'); ?>を追加しました！カードの詳細や評価を確認できます。</dd>
 					<dt>2018/01/23</dt>

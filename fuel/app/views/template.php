@@ -29,6 +29,7 @@
 				<li><?= Html::anchor('result/list', 'ゲーム結果'); ?></li>
 				<li><?= Html::anchor('profile/list', '部員一覧'); ?></li>
 				<li><?= Html::anchor('cards/list', 'カード一覧'); ?></li>
+				<li><?= Html::anchor('ranking', '統計'); ?></li>
 				<li><?= Html::anchor('document', '記事'); ?></li>
 				<?php if (Authplus::check([1])): ?>
 				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
@@ -40,6 +41,7 @@
 				<li><?= Html::anchor('result/list', 'ゲーム結果'); ?></li>
 				<li><?= Html::anchor('profile/list', '部員一覧'); ?></li>
 				<li><?= Html::anchor('cards/list', 'カード一覧'); ?></li>
+				<li><?= Html::anchor('ranking', '統計'); ?></li>
 				<li><?= Html::anchor('document', '記事'); ?></li>
 				<?php if (Authplus::check([1])): ?>
 				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
