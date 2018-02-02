@@ -84,6 +84,7 @@ class Controller_Cards extends Controller_Template
 
 	public function action_show($card_id)
 	{
+		$major_improvements_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'M001', 'M002', 'M003', 'M004', 'M005', 'M006', 'M007', 'M008', 'M009', 'M010', 'M011', 'M012', 'M013', 'M014'];
 		$this->template->title = 'カード詳細【'.$card_id.'】';
 		$this->template->contents = View::forge('cards/show');
 		$occupations_query = DB::select()
@@ -114,20 +115,63 @@ class Controller_Cards extends Controller_Template
 			{
 				throw new HttpNotFoundException;
 			}
+			if (in_array($card_data[0]['improvement_id'], $major_improvements_list))
+			{
+				$type = 'major_improvement';
+			}
+			else
+			{
+				$type = 'minor_improvement';
+			}
+		}
+		else
+		{
+			$type = 'occupation';
 		}
 		$opinions_query = DB::select()
 							->from('cards_opinions')
 							->where('card_id', '=', $card_id)
 							->join('users_profile', 'inner')
 							->on('cards_opinions.user_id', '=', 'users_profile.user_id');
+		$game_query = DB::select()
+						->from('result_'.$type.'s')
+						->join('result_overview')
+						->on('result_'.$type.'s.game_id', '=', 'result_overview.game_id')
+						->join('result_players')
+						->on('result_'.$type.'s.game_id', '=', 'result_players.game_id')
+						->on('result_'.$type.'s.player_order', '=', 'result_players.player_order')
+						->join('users_profile')
+						->on('result_players.player_id', '=', 'users_profile.user_id')
+						->join('result_score')
+						->on('result_'.$type.'s.game_id', '=', 'result_score.game_id')
+						->on('result_'.$type.'s.player_order', '=', 'result_score.player_order');
+		switch ($type)
+		{
+			case 'occupation':
+				$game_query->where('occupation_id', '=', $card_id);
+				break;
+			case 'minor_improvement':
+			case 'major_improvement':
+				$game_query->where('improvement_id', '=', $card_id);
+				break;
+		}
+		$game_query->order_by('result_overview.game_id', 'desc');
+		$avg_query = DB::select(DB::expr('AVG(points) AS `average`'))
+						->from('cards_opinions')
+						->where('card_id', '=', $card_id);
 		try
 		{
 			$opinions_data = $opinions_query->execute()->as_array();
+			$game_data = $game_query->execute()->as_array();
+			$avg_data = $avg_query->execute()->as_array();
 		}
 		catch (DatabaseException $e)
 		{
 			die('DB Error');
 		}
+		$this->template->contents->game_data = $game_data;
+		$this->template->contents->average = $avg_data === [] ? null : $avg_data[0]['average'];
+		$this->template->contents->type = $type;
 		$this->template->contents->card_id = $card_id;
 		$this->template->contents->card_data = $card_data[0];
 		$this->template->contents->opinions_data = $opinions_data;

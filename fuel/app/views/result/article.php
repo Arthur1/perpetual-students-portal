@@ -83,6 +83,9 @@
 </table>
 <?php foreach ($score_data as $record): ?>
 <h2 class="green-text text-darken-1" id="player<?= $record['player_order'] ?>"><?= array_column($players_data, 'screen_name', 'player_order')[$record['player_order']]; ?>(<?= $record['player_order'] ?>番手)の詳細</h2>
+<p>
+	<?= $record['total_score']; ?>点 / <?= $record['rank']; ?>位
+</p>
 <div class="row">
 	<div class="col s12 m6 l4">
 		<h3 class="yellow-text text-darken-2">職業</h3>

@@ -1,9 +1,6 @@
-<?php
-$major_improvements_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'M001', 'M002', 'M003', 'M004', 'M005', 'M006', 'M007', 'M008', 'M009', 'M010', 'M011', 'M012', 'M013', 'M014'];
-?>
-<?php if (isset($card_data['category'])): ?>
+<?php if ($type === 'occupation'): ?>
 <h1 class="yellow-text text-darken-2"><?= $card_data['japanese_name']; ?><span class="new yellow darken-2 badge" data-badge-caption=""><?= $card_id; ?></span></h1>
-<?php elseif (in_array($card_id, $major_improvements_list, true)): ?>
+<?php elseif ($type === 'major_improvement'): ?>
 <h1 class="pink-text text-darken-2"><?= $card_data['japanese_name']; ?><span class="new pink darken-2 badge" data-badge-caption=""><?= $card_id; ?></span></h1>
 <?php else: ?>
 <h1 class="orange-text text-darken-2"><?= $card_data['japanese_name']; ?><span class="new orange darken-2 badge" data-badge-caption=""><?= $card_id; ?></span></h1>
@@ -34,6 +31,11 @@ $major_improvements_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
 <h2 class="green-text text-darken-1">カード評価</h2>
 <?php if ($opinions_data !== []): ?>
 <div class="collection">
+	<?php if ($average !== null): ?>
+	<div class="collection-item">
+		平均：<span style="font-size: 1.5rem; line-height: 2rem;"><?= round($average, 1); ?>点</span>
+	</div>
+	<?php endif; ?>
 <?php foreach ($opinions_data as $record): ?>
 	<div class="collection-item avatar">
 		<div>
@@ -49,4 +51,21 @@ $major_improvements_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '
 </div>
 <?php else: ?>
 <p>まだこのカードに対する評価が入力されていません。</p>
+<?php endif; ?>
+<h2 class="green-text text-darken-1">使われたゲーム</h2>
+<?php if ($game_data === []): ?>
+<p>まだこのカードは使用されていません。</p>
+<?php else: ?>
+<div class="collection">
+	<div class="collection-item">
+		使用された総回数：<?= count($game_data); ?>回
+	</div>
+	<?php foreach ($game_data as $record): ?>
+	<a href="/result/article/<?= $record['game_id']."#player".$record['player_order']; ?>" class="collection-item avatar">
+		<?= Asset::img($record['icon'], ['class' => 'circle', 'alt' => 'users_icon']); ?>
+		<?= $record['screen_name']; ?><br>
+		<?= date('Y/m/d H:i', $record['game_id']).' '.$record['player_num'].'人 '.$record['regulation'].'<br>'.$record['player_order'].'番手 '.$record['total_score'].'点 '.$record['rank'].'位'; ?>
+	</a>
+	<?php endforeach; ?>
+</div>
 <?php endif; ?>
