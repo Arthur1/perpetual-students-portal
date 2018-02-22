@@ -8,6 +8,8 @@
 	<dt class="green-text text-darken-1">レギュレーション</dt>
 	<dd><?= $overview_data['regulation']; ?></dd>
 </dl>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<?= Html::anchor(Uri::create('https://twitter.com/share', [], ['url' => Uri::current(), 'hashtags' => 'ぶらつき学生ポータル']), 'Tweet', ['class' => 'twitter-share-button', 'data-show-count' => 'false']); ?>
 <h2 class="green-text text-darken-1">スコア</h2>
 <table class="striped">
 	<thead>
