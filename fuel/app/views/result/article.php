@@ -217,7 +217,19 @@
 	</div>
 	<?php endif; ?>
 	<div class="col s12">
-		<?= Html::anchor('profile/show/'.array_column($players_data, 'player_id', 'player_order')[$record['player_order']], array_column($players_data, 'screen_name', 'player_order')[$record['player_order']].'のプロフィールはこちら'); ?>
+		<div class="collection">
+			<div class="collection-item avatar">
+				<?php
+					$player_record = array_column($players_data, null, 'player_order')[$record['player_order']];
+				?>
+				<a href="/profile/show/<?= $player_record['user_id']; ?>">
+					<?= Asset::img($player_record['icon'], ['class' => 'circle']); ?>
+				</a>
+				<?= $player_record['screen_name']; ?> (<?= $player_record['user_id']; ?>)<br>
+				<span class="grey-text"><?= $player_record['comments']; ?></span><br>
+				<?= Html::anchor('profile/show/'.$player_record['user_id'], 'プロフィールはこちら'); ?>
+			</div>
+		</div>
 	</div>
 </div>
 

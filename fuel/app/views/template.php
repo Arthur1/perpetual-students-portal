@@ -54,15 +54,29 @@
 			<?= Html::anchor('', 'ぶらつき学生ポータル', ['class' => 'brand-logo left']); ?>
 			<a href="#" data-activates="mobile-menu" class="button-collapse right"><i class="material-icons">menu</i></a>
 			<ul class="side-nav" id="mobile-menu">
-				<li><?= Html::anchor('result/list', 'ゲーム結果'); ?></li>
-				<li><?= Html::anchor('profile/list', '部員一覧'); ?></li>
-				<li><?= Html::anchor('cards/list', 'カード一覧'); ?></li>
-				<li><?= Html::anchor('ranking', '統計'); ?></li>
-				<li><?= Html::anchor('document', '記事'); ?></li>
 				<?php if (Authplus::check([1])): ?>
-				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
+				<li>
+					<div class="user-view">
+    					<div class="background">
+    						<?= Asset::img('navbg.jpg', ['alt' => 'background']); ?>
+						</div>
+						<a href="/mypage"><?= Asset::img(Auth::get('icon'), ['class' => 'circle', 'alt' => 'user icon']); ?></a>
+						<a href="/mypage"><span class="white-text name"><?= Auth::get('screen_name'); ?></span></a>
+						<a href="/mypage"><span class="white-text email"><?= Auth::get_screen_name(); ?></span></a>
+  					</div>
+				</li>
 				<?php else: ?>
-				<li><?= Html::anchor('login', 'ログイン'); ?></li>
+				<li><?= Html::anchor('login', '<i class="material-icons">account_circle</i>ログイン'); ?></li>
+				<li><div class="divider"></div></li>
+				<?php endif; ?>
+				<li><?= Html::anchor('result/list', '<i class="material-icons">star_rate</i>ゲーム結果'); ?></li>
+				<li><?= Html::anchor('profile/list', '<i class="material-icons">people</i>部員一覧'); ?></li>
+				<li><?= Html::anchor('cards/list', '<i class="material-icons">find_in_page</i>カード一覧'); ?></li>
+				<li><?= Html::anchor('ranking', '<i class="material-icons">assessment</i>統計'); ?></li>
+				<li><?= Html::anchor('document', '<i class="material-icons">description</i>記事'); ?></li>
+				<?php if (Authplus::check([1])): ?>
+				<li><div class="divider"></div></li>
+				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
 				<?php endif; ?>
 			</ul>
 			<ul class="right hide-on-med-and-down">
