@@ -32,7 +32,7 @@
 		if (isset($ogp_image_large))
 		{
 			$ogp[] = ['property' => 'twitter:card', 'content' => 'summary large image'];
-			$ogp[] = ['property' => 'og:image', 'content' => Asset::get_file($ogp_image, 'img')];
+			$ogp[] = ['property' => 'og:image', 'content' => Asset::get_file($ogp_image_large, 'img')];
 		}
 		elseif (isset($ogp_image))
 		{

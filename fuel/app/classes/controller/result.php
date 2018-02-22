@@ -98,7 +98,7 @@ class Controller_Result extends Controller_Template
 		{
 			throw new HttpNotFoundException;
 		}
-		foreach ($score_query as $record)
+		foreach ($score_data as $record)
 		{
 			if (! empty($record['image_path']))
 			{
