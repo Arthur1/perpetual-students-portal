@@ -16,6 +16,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
 	<meta name="theme-color" content="#ff9800">
+	<meta name="keywords" content="アグリコラ,ぶらつき学生連盟,東工大,東京工業大学,ボードゲーム">
 	<?= Html::meta('description', isset($description) ? $description : '東京工業大学アグリコラサークル「ぶらつき学生連盟」の公式サイトです。拡張入り旧版アグリコラのプレイ結果を記録しています。'); ?>
 	<meta name="author" content="東京工業大学アグリコラサークル「ぶらつき学生連盟」">
 	<?php
@@ -24,7 +25,7 @@
 			['property' => 'og:type', 'content' => Uri::string() === '' ? 'website' : 'article'],
 			['property' => 'og:url', 'content' => Uri::current()],
 			['property' => 'og:site_name', 'content' => 'ぶらつき学生ポータル'],
-			['property' => 'og:desciription', 'content' => isset($description) ? $description : '東京工業大学アグリコラサークルぶらつき学生連盟の公式サイトです。'],
+			['property' => 'og:description', 'content' => isset($description) ? $description : '東京工業大学アグリコラサークルぶらつき学生連盟の公式サイトです。'],
 			['property' => 'fb:app_id', 'content' => '196610947765927'],
 
 		];
