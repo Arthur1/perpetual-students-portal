@@ -1,6 +1,6 @@
 {
-    "name": "\u3076\u3089\u3064\u304d\u5b66\u751f\u30dd\u30fc\u30bf\u30eb",
-    "short_name": "ぶらつき学生",
+    "name": "ぶらつき学生ポータル",
+    "short_name": "ぶらつき学生ポータル",
     "lang": "ja",
     "icons": [
         {
@@ -11,5 +11,6 @@
     ],
     "theme_color": "#ff9800",
     "background_color": "#ff9800",
-    "display": "standalone"
+    "display": "standalone",
+    "gcm_sender_id": "119316646356"
 }

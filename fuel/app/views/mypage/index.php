@@ -22,3 +22,5 @@
 	<?= Html::anchor('register', '新規アカウント登録', ['class' => 'collection-item']); ?>
 	<?= Html::anchor('mypage/help', 'ヘルプ', ['class' => 'collection-item']); ?>
 </div>
+<div id="user_id" class="hide"><?= $user_id; ?></div>
+<div id="signature" class="hide"><?= $signature; ?></div>

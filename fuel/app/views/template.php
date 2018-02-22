@@ -9,12 +9,12 @@
 	<link rel="apple-touch-icon" sizes="152x152" href="/assets/icon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
-	<link rel="manifest" href="/assets/icon/manifest.json">
+	<link rel="manifest" href="/manifest.json">
 	<link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#f59b35">
 	<link rel="shortcut icon" href="/assets/icon/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
+	<meta name="msapplication-config" content="/browserconfig.xml">
 	<meta name="theme-color" content="#ff9800">
 	<meta name="keywords" content="アグリコラ,ぶらつき学生連盟,東工大,東京工業大学,ボードゲーム">
 	<?= Html::meta('description', isset($description) ? $description : '東京工業大学アグリコラサークル「ぶらつき学生連盟」の公式サイトです。拡張入り旧版アグリコラのプレイ結果を記録しています。'); ?>

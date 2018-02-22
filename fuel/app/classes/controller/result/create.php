@@ -84,7 +84,6 @@ class Controller_Result_Create extends Controller_Template
 		{
 			$overview_query->execute();
 			$player_query->execute();
-			Response::redirect('result/create/success');
 		}
 		catch (DatabaseException $e)
 		{
@@ -92,7 +91,38 @@ class Controller_Result_Create extends Controller_Template
 			$this->template->contents = $view;
 			return;
 		}
-		$this->template->contents = $view;
+		$notification_endpoints_query = DB::select()
+											->from('notification_endpoints')
+											->join('users_profile')
+											->on('notification_endpoints.user_id', '=', 'users_profile.user_id')
+											->where('users_profile.user_id', 'in', $players);
+		$notification_endpoints = $notification_endpoints_query->execute()->as_array();
+		Config::load('secret');
+		$webpush = new \Minishlink\WebPush\WebPush([
+			'VAPID' =>  [
+				'subject' => 'http://localhost/',
+				'publicKey' => Config::get('vapid_public_key'),
+				'privateKey' => Config::get('vapid_private_key'),
+			],
+		]);
+		$notification_players = array_column($notification_endpoints, 'user_id');
+		foreach ($players as $key => $player)
+		{
+			$orders[$player] = $key + 1;
+		}
+		foreach ($notification_endpoints as $record)
+		{
+
+			$payload = [
+				'title' => 'ぶらつき学生ポータル',
+				'message' => $record['screen_name'].'さんのプレイしたゲームが登録されました。',
+				'url' => Uri::create('result/edit'.(string)$game_id.'/'.(string)$orders[$record['user_id']]),
+				'icon' => Uri::create('assets/icon/android-chrome-144x144.png'),
+			];
+			$webpush->sendNotification($record['endpoint'], json_encode($payload), $record['public_key'], $record['auth_secret']);
+		}
+		$webpush->flush();
+		Response::redirect('result/create/success');
 	}
 
 	public function action_success()
