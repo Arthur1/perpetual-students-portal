@@ -98,6 +98,15 @@ class Controller_Result extends Controller_Template
 		{
 			throw new HttpNotFoundException;
 		}
+		foreach ($score_query as $record)
+		{
+			if (! empty($record['image_path']))
+			{
+				$this->template->ogp_image_large = 'upload/result/'.$record['image_path'];
+				break;
+			}
+		}
+		$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」でプレイした、'.$overview_data[0]['player_num'].'人'.$overview_data[0]['regulation'].'アグリコラの結果です。最高点は'.max(array_column($score_data, 'total_score')).'点でした。';
 		$this->template->contents->overview_data = $overview_data[0];
 		$this->template->contents->players_data = $players_data;
 		$this->template->contents->score_data = array_column($score_data, null, 'player_order');
@@ -110,6 +119,7 @@ class Controller_Result extends Controller_Template
 	{
 		$num = 10;
 		$this->template->title = 'ゲーム一覧';
+		$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」で行われたアグリコラのゲーム一覧です。';
 		$this->template->contents = View::forge('result/list');
 		$count_query = DB::select(DB::expr('COUNT(*) as count'))
 						->from('result_overview');

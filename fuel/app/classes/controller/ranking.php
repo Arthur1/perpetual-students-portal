@@ -4,6 +4,7 @@ class Controller_Ranking extends Controller_Template
 	public function action_index()
 	{
 		$this->template->title = '統計';
+		$this->template->description = '「ぶらつき学生ポータル」に登録されたデータを集計したランキングです。';
 		$this->template->contents = View::forge('ranking/index');
 		$high_rate_occupations_query = DB::query('
 			SELECT *

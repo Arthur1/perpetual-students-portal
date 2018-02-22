@@ -10,6 +10,7 @@ class Controller_Cards extends Controller_Template
 	{
 		$num = 30;
 		$this->template->title = 'カード一覧';
+		$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」で使用しているカードの一覧です。';
 		$this->template->contents = View::forge('cards/list');
 		$count_query = DB::select(DB::expr('COUNT(*) as count'))
 						->from('cards_list');
@@ -48,6 +49,7 @@ class Controller_Cards extends Controller_Template
 	{
 		$this->template->title = 'カード検索';
 		$this->template->contents = View::forge('cards/search');
+		$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」で使用しているカードの検索結果です。';
 		$data_query = DB::select()
 			->from('cards_list');
 		if (Input::get('card_id') != null)
@@ -85,7 +87,6 @@ class Controller_Cards extends Controller_Template
 	public function action_show($card_id)
 	{
 		$major_improvements_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'M001', 'M002', 'M003', 'M004', 'M005', 'M006', 'M007', 'M008', 'M009', 'M010', 'M011', 'M012', 'M013', 'M014'];
-		$this->template->title = 'カード詳細【'.$card_id.'】';
 		$this->template->contents = View::forge('cards/show');
 		$occupations_query = DB::select()
 								->from('cards_occupations')
@@ -169,6 +170,8 @@ class Controller_Cards extends Controller_Template
 		{
 			die('DB Error');
 		}
+		$this->template->description = '【'.$card_id.'】'.$card_data[0]['japanese_name'].' のカード効果や、「ぶらつき学生連盟」メンバーによる評価、使用されたゲーム一覧を掲載しています。';
+		$this->template->title = 'カード詳細【'.$card_id.'】'.$card_data[0]['japanese_name'];
 		$this->template->contents->game_data = $game_data;
 		$this->template->contents->average = $avg_data === [] ? null : $avg_data[0]['average'];
 		$this->template->contents->type = $type;

@@ -3,7 +3,6 @@ class Controller_Profile extends Controller_Template
 {
 	public function action_show($user_id)
 	{
-		$this->template->title = 'プロフィール表示ページ';
 		$view = View::forge('profile/show');
 		$query = DB::select()
 					->from('users_profile')
@@ -31,6 +30,9 @@ class Controller_Profile extends Controller_Template
 		{
 			throw new HttpNotFoundException;
 		}
+		$this->template->title = $data[0]['screen_name'].'のプロフィール';
+		$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」メンバーのプロフィールやプレイしたゲーム一覧を掲載しています。';
+		$this->template->ogp_image = $data[0]['icon'];
 		$view->data = $data[0];
 		$view->result_data = $result_data;
 		$this->template->contents = $view;

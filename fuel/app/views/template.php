@@ -1,23 +1,50 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" prefix="og: http://ogp.me/ns#">
 <head>
 	<meta charset="UTF-8">
 	<title><?= isset($title) ? $title : ''; ?> - ぶらつき学生ポータル</title>
-	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!--Import materialize.css-->
 	<?= Asset::css('materialize.css'); ?>
 	<?= Asset::render('add_css'); ?>
-	<!--Let browser know website is optimized for mobile-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="apple-touch-icon" sizes="152x152" href="/assets/icon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
 	<link rel="manifest" href="/assets/icon/manifest.json">
 	<link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#f59b35">
 	<link rel="shortcut icon" href="/assets/icon/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
 	<meta name="theme-color" content="#ff9800">
+	<?= Html::meta('description', isset($description) ? $description : '東京工業大学アグリコラサークル「ぶらつき学生連盟」の公式サイトです。拡張入り旧版アグリコラのプレイ結果を記録しています。'); ?>
+	<meta name="author" content="東京工業大学アグリコラサークル「ぶらつき学生連盟」">
+	<?php
+		$ogp = [
+			['property' => 'og:title', 'content' => isset($title) ? $title : ''],
+			['property' => 'og:type', 'content' => Uri::string() === '' ? 'website' : 'article'],
+			['property' => 'og:url', 'content' => Uri::current()],
+			['property' => 'og:site_name', 'content' => 'ぶらつき学生ポータル'],
+			['property' => 'og:desciription', 'content' => isset($description) ? $description : '東京工業大学アグリコラサークルぶらつき学生連盟の公式サイトです。'],
+			['property' => 'fb:app_id', 'content' => '196610947765927'],
+
+		];
+		if (isset($ogp_image_large))
+		{
+			$ogp[] = ['property' => 'twitter:card', 'content' => 'summary large image'];
+			$ogp[] = ['property' => 'og:image', 'content' => Asset::get_file($ogp_image, 'img')];
+		}
+		elseif (isset($ogp_image))
+		{
+			$ogp[] = ['property' => 'twitter:card', 'content' => 'summary'];
+			$ogp[] = ['property' => 'og:image', 'content' => Asset::get_file($ogp_image, 'img')];
+		}
+		else
+		{
+			$ogp[] = ['property' => 'twitter:card', 'content' => 'summary'];
+			$ogp[] = ['property' => 'og:image', 'content' => Uri::create('assets/icon/apple-touch-icon.png')];
+		}
+		echo Html::meta($ogp);
+	?>
 </head>
 <body>
 <header class="navbar-fixed">
