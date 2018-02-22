@@ -21,7 +21,7 @@
 	<meta name="author" content="東京工業大学アグリコラサークル「ぶらつき学生連盟」">
 	<?php
 		$ogp = [
-			['property' => 'og:title', 'content' => isset($title) ? $title : ''],
+			['property' => 'og:title', 'content' => isset($title) ? $title.' - ぶらつき学生ポータル' : ''],
 			['property' => 'og:type', 'content' => Uri::string() === '' ? 'website' : 'article'],
 			['property' => 'og:url', 'content' => Uri::current()],
 			['property' => 'og:site_name', 'content' => 'ぶらつき学生ポータル'],
