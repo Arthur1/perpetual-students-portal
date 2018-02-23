@@ -116,7 +116,7 @@ class Controller_Result_Create extends Controller_Template
 			$payload = [
 				'title' => 'ぶらつき学生ポータル',
 				'message' => $record['screen_name'].'さんのプレイしたゲームが登録されました。',
-				'url' => Uri::create('result/edit'.(string)$game_id.'/'.(string)$orders[$record['user_id']]),
+				'url' => Uri::create('result/edit/'.(string)$game_id.'/'.(string)$orders[$record['user_id']]),
 				'icon' => Uri::create('assets/icon/android-chrome-144x144.png'),
 			];
 			$webpush->sendNotification($record['endpoint'], json_encode($payload), $record['public_key'], $record['auth_secret']);
