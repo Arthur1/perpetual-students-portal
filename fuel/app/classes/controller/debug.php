@@ -46,4 +46,9 @@ class Controller_Debug extends Controller
 			true
 		);
 	}
+
+	public function action_resetpassword($id)
+	{
+		echo Auth::reset_password($id);
+	}
 }
