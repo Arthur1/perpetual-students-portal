@@ -366,6 +366,7 @@ class Controller_Result extends Controller_Template
 	private function generate_val()
 	{
 		$val = Validation::forge();
+		$val->add_callable(new Rule());
 		$basic_score_fields = [
 			'fields' => '畑',
 			'pastures' => '牧場',
@@ -418,6 +419,12 @@ class Controller_Result extends Controller_Template
 			->add_rule('required')
 			->add_rule('valid_string', ['numeric', 'dashes'])
 			->add_rule('numeric_between', 1, 5);
+		$val->add('occupations', '職業')
+			->add_rule('not_duplicate');
+		$val->add('minor_improvements', '小さい進歩')
+			->add_rule('not_duplicate');
+		$val->add('major_improvements', '大きい進歩')
+			->add_rule('not_duplicate');
 		return $val;
 	}
 }

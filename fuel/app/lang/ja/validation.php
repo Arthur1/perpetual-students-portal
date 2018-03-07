@@ -19,4 +19,5 @@ return array(
     'numeric_max'      => ':label は :param:1 より小さい値を入力してください。',
     'numeric_between'  => ':label は :param:1 以上 :param:2 以下の値を入力してください。',
     'valid_string'     => ':label は :param:1 で入力してください。',
+    'not_duplicate'    => ':label に重複する値が含まれています。',
 );
