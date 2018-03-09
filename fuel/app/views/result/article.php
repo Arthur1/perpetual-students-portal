@@ -147,9 +147,9 @@
 					<span class="new orange darken-2 badge" data-badge-caption=""><?= $minor_improvements_data[$key]['improvement_id'] ?></span>
 				</h3>
 				<dl>
-					<?php if ($occupations_data[$key]['deck'] !== ''): ?>
+					<?php if ($minor_improvements_data[$key]['deck'] !== ''): ?>
 					<dt class="green-text">デッキ</dt>
-					<dd><?= $deck_list[$occupations_data[$key]['deck']]; ?></dd>
+					<dd><?= $deck_list[$minor_improvements_data[$key]['deck']]; ?></dd>
 					<?php endif; ?>
 					<?php if ($minor_improvements_data[$key]['prerequisite'] !== ''): ?>
 					<dt class="green-text">前提</dt>
