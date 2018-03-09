@@ -110,8 +110,12 @@
 					<span class="new yellow darken-2 badge" data-badge-caption=""><?= $occupations_data[$key]['occupation_id'] ?></span>
 				</h3>
 				<dl>
+					<?php if ($occupations_data[$key]['deck'] !== ''): ?>
+					<dt class="green-text">デッキ</dt>
+					<dd><?= $deck_list[$occupations_data[$key]['deck']]; ?></dd>
+					<?php endif; ?>
 					<?php if ($occupations_data[$key]['category'] !== ''): ?>
-					<dt>カテゴリー</dt>
+					<dt class="green-text">カテゴリー</dt>
 					<dd><?= $occupations_data[$key]['category'].'+'; ?></dd>
 					<?php endif; ?>
 				</dl>
@@ -143,16 +147,20 @@
 					<span class="new orange darken-2 badge" data-badge-caption=""><?= $minor_improvements_data[$key]['improvement_id'] ?></span>
 				</h3>
 				<dl>
+					<?php if ($occupations_data[$key]['deck'] !== ''): ?>
+					<dt class="green-text">デッキ</dt>
+					<dd><?= $deck_list[$occupations_data[$key]['deck']]; ?></dd>
+					<?php endif; ?>
 					<?php if ($minor_improvements_data[$key]['prerequisite'] !== ''): ?>
-					<dt>前提</dt>
+					<dt class="green-text">前提</dt>
 					<dd><?= $minor_improvements_data[$key]['prerequisite']; ?></dd>
 					<?php endif; ?>
 					<?php if ($minor_improvements_data[$key]['costs'] !== ''): ?>
-					<dt>コスト</dt>
+					<dt class="green-text">コスト</dt>
 					<dd><?= $minor_improvements_data[$key]['costs']; ?></dd>
 					<?php endif; ?>
 					<?php if ($minor_improvements_data[$key]['card_points'] !== '0'): ?>
-					<dt>カード点</dt>
+					<dt class="green-text">カード点</dt>
 					<dd><?= $minor_improvements_data[$key]['card_points'].'点'; ?></dd>
 					<?php endif; ?>
 				</dl>
@@ -185,15 +193,15 @@
 				</h3>
 				<dl>
 					<?php if ($major_improvements_data[$key]['prerequisite'] !== ''): ?>
-					<dt>前提</dt>
+					<dt class="green-text">前提</dt>
 					<dd><?= $major_improvements_data[$key]['prerequisite']; ?></dd>
 					<?php endif; ?>
 					<?php if ($major_improvements_data[$key]['costs'] !== ''): ?>
-					<dt>コスト</dt>
+					<dt class="green-text">コスト</dt>
 					<dd><?= $major_improvements_data[$key]['costs']; ?></dd>
 					<?php endif; ?>
 					<?php if ($major_improvements_data[$key]['card_points'] !== '0'): ?>
-					<dt>カード点</dt>
+					<dt class="green-text">カード点</dt>
 					<dd><?= $major_improvements_data[$key]['card_points'].'点'; ?></dd>
 					<?php endif; ?>
 				</dl>

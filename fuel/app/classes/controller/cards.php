@@ -6,6 +6,62 @@ class Controller_Cards extends Controller_Template
 		'opinion',
 	];
 
+	private $deck_list = [
+		'E' => 'Eデッキ(基本セット)',
+		'I' => 'Iデッキ(基本セット)',
+		'K' => 'Kデッキ(基本セット)',
+		'G' => 'Gデッキ',
+		'FL' => 'FLデッキ',
+		'WA' => 'WAデッキ',
+		'C' => 'Čデッキ',
+		'P' => 'πデッキ',
+		'O' => 'Öデッキ',
+		'BI' => 'BIデッキ',
+		'NL' => 'NLデッキ',
+		'Z' => 'Zデッキ',
+		'FR' => 'FRデッキ',
+		'alpha' => 'αデッキ(WMデッキ)',
+		'beta' => 'βデッキ(WMデッキ)',
+		'gamma' => 'γデッキ(WMデッキ)',
+		'epsilon' => 'εデッキ(WMデッキ)',
+		'delta' => 'δデッキ(WMデッキ)',
+		'ME' => 'Eデッキ(泥沼からの出発)',
+		'MF' => 'Fデッキ(泥沼からの出発)',
+	];
+
+	private $form_deck_list = [
+		null => 'すべてのデッキ',
+		'基本セット' => [
+			'E' => 'Eデッキ',
+			'I' => 'Iデッキ',
+			'K' => 'Kデッキ',
+			'EIK' => 'EIK全て',
+		],
+		'BI' => 'BIデッキ',
+		'C' => 'Čデッキ',
+		'FL' => 'FLデッキ',
+		'FR' => 'FRデッキ',
+		'G' => 'Gデッキ',
+		'NL' => 'NLデッキ',
+		'O' => 'Öデッキ',
+		'P' => 'πデッキ',
+		'WA' => 'WA デッキ',
+		'WMデッキ' => [
+			'alpha' => 'αデッキ',
+			'beta' => 'βデッキ',
+			'gamma' => 'γデッキ',
+			'epsilon' => 'εデッキ',
+			'delta' => 'δデッキ',
+			'WM' => 'WMデッキ全て',
+		],
+		'Z' => 'Zデッキ',
+		'泥沼からの出発' => [
+			'ME' => 'Eデッキ(泥沼)',
+			'MF' => 'Fデッキ',
+			'M' => 'EF両方',
+		],
+	];
+
 	public function action_list($page = 1)
 	{
 		$num = 30;
@@ -39,26 +95,47 @@ class Controller_Cards extends Controller_Template
 		{
 			die('DB Error');
 		}
+		Asset::js(['card.js'], [], 'add_js');
 		$this->template->contents->num = $num;
 		$this->template->contents->page = $page;
 		$this->template->contents->count = $count;
 		$this->template->contents->data = $data;
+		$this->template->contents->deck_list = $this->form_deck_list;
 	}
 
 	public function action_search()
 	{
+		Asset::js(['card.js'], [], 'add_js');
 		$this->template->title = 'カード検索';
 		$this->template->contents = View::forge('cards/search');
 		$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」で使用しているカードの検索結果です。';
 		$data_query = DB::select()
 			->from('cards_list');
-		if (Input::get('card_id') != null)
+		if (! empty(Input::get('card_id')))
 		{
-			$data_query->and_where('card_id', 'like', '%'.Input::get('card_id').'%');
+			$data_query->and_where('card_id', '=', Input::get('card_id'));
 		}
-		if (Input::get('japanese_name') != null)
+		if (! empty(Input::get('japanese_name')))
 		{
 			$data_query->and_where('japanese_name', 'like', '%'.Input::get('japanese_name').'%');
+		}
+		if (! empty(Input::get('deck')))
+		{
+			switch (Input::get('deck'))
+			{
+				case 'EIK':
+					$data_query->and_where('deck', 'in', ['E', 'I', 'K']);
+					break;
+				case 'M':
+					$data_query->and_where('deck', 'in', ['ME', 'MF']);
+					break;
+				case 'WM':
+					$data_query->and_where('deck', 'in', ['alpha', 'beta', 'gamma', 'epsilon', 'delta']);
+					break;
+				default:
+					$data_query->and_where('deck', '=', Input::get('deck'));
+					break;
+			}
 		}
 		if (Input::get('occupations') === '1' and Input::get('improvements') !== '1')
 		{
@@ -82,6 +159,8 @@ class Controller_Cards extends Controller_Template
 			die('DB Error');
 		}
 		$this->template->contents->data = $data;
+		$this->template->contents->deck_list = $this->form_deck_list;
+
 	}
 
 	public function action_show($card_id)
@@ -178,6 +257,8 @@ class Controller_Cards extends Controller_Template
 		$this->template->contents->card_id = $card_id;
 		$this->template->contents->card_data = $card_data[0];
 		$this->template->contents->opinions_data = $opinions_data;
+		$this->template->contents->deck_list = $this->deck_list;
+
 	}
 
 	public function action_edit($card_id)
@@ -229,6 +310,7 @@ class Controller_Cards extends Controller_Template
 		$this->template->contents->card_id = $card_id;
 		$this->template->contents->card_data = $card_data[0];
 		$this->template->contents->opinions_data = $opinions_data;
+		$this->template->contents->deck_list = $this->deck_list;
 		if (Input::post('submit'))
 		{
 			foreach ($this->fields as $field)
@@ -253,6 +335,7 @@ class Controller_Cards extends Controller_Template
 			Session::set_flash('card_id', $card_id);
 			Response::redirect('cards/confirm');
 		}
+
 	}
 
 	public function action_confirm()

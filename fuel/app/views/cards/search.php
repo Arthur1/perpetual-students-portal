@@ -34,7 +34,7 @@
 	<div class="col s12 m4">
 		<h2 class="green-text text-darken-1">カード検索</h2>
 		<p>
-			検索ワードは部分一致です。(たとえば、WMデッキのみを検索したければ、カード番号のところにWMと入れる)
+			カード名は部分一致です。(たとえば「畑」と入力すると、畑の文字を含むカードが検索できます)
 		</p>
 		<?= Form::open(['method' => 'get', 'action' => '/cards/search']); ?>
 		<div class="row">
@@ -45,6 +45,10 @@
 			<div class="input-field col s12">
 				<?= Form::input('japanese_name', Input::get('japanese_name'), ['class' => 'input']); ?>
 				<label for="form_japanese_name">カード名</label>
+			</div>
+			<div class="input-field col s12">
+				<?= Form::select('deck', Input::get('deck'), $deck_list); ?>
+				<label for="form_deck">デッキ</label>
 			</div>
 			<div class="col s12 l6">
 				<?= Form::checkbox('occupations', true, Input::get('occupations')); ?>

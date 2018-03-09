@@ -6,6 +6,10 @@
 <h1 class="orange-text text-darken-2"><?= $card_data['japanese_name']; ?><span class="new orange darken-2 badge" data-badge-caption=""><?= $card_id; ?></span></h1>
 <?php endif; ?>
 <dl>
+	<?php if (! empty($card_data['deck'])): ?>
+	<dt class="green-text text-darken-1">デッキ</dt>
+	<dd><?= $deck_list[$card_data['deck']]; ?></dd>
+	<?php endif; ?>
 	<?php if (isset($card_data['category'])): ?>
 	<dt class="green-text text-darken-1">カテゴリー</dt>
 	<dd><?= $card_data['category']; ?>+</dd>

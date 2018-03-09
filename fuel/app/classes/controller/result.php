@@ -106,13 +106,38 @@ class Controller_Result extends Controller_Template
 				break;
 			}
 		}
-		$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」でプレイした、'.$overview_data[0]['player_num'].'人'.$overview_data[0]['regulation'].'アグリコラの結果です。最高点は'.max(array_column($score_data, 'total_score')).'点でした。';
+		if ($score_data !== [])
+		{
+			$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」でプレイした、'.$overview_data[0]['player_num'].'人'.$overview_data[0]['regulation'].'アグリコラの結果です。最高点は'.max(array_column($score_data, 'total_score')).'点でした。';
+		}
 		$this->template->contents->overview_data = $overview_data[0];
 		$this->template->contents->players_data = $players_data;
 		$this->template->contents->score_data = array_column($score_data, null, 'player_order');
 		$this->template->contents->occupations_data = $occupations_data;
 		$this->template->contents->minor_improvements_data = $minor_improvements_data;
 		$this->template->contents->major_improvements_data = $major_improvements_data;
+		$this->template->contents->deck_list = [
+			'E' => 'Eデッキ(基本セット)',
+			'I' => 'Iデッキ(基本セット)',
+			'K' => 'Kデッキ(基本セット)',
+			'G' => 'Gデッキ',
+			'FL' => 'FLデッキ',
+			'WA' => 'WAデッキ',
+			'C' => 'Čデッキ',
+			'P' => 'πデッキ',
+			'O' => 'Öデッキ',
+			'BI' => 'BIデッキ',
+			'NL' => 'NLデッキ',
+			'Z' => 'Zデッキ',
+			'FR' => 'FRデッキ',
+			'alpha' => 'αデッキ(WMデッキ)',
+			'beta' => 'βデッキ(WMデッキ)',
+			'gamma' => 'γデッキ(WMデッキ)',
+			'epsilon' => 'εデッキ(WMデッキ)',
+			'delta' => 'δデッキ(WMデッキ)',
+			'ME' => 'Eデッキ(泥沼からの出発)',
+			'MF' => 'Fデッキ(泥沼からの出発)',
+		];
 	}
 
 	public function action_list($page = 1)
