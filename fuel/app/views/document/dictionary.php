@@ -1,7 +1,7 @@
 <h1 class="orange-text text-darken-1">用語集</h1>
 <h2 class="green-text text-darken-1">全混ぜ</h2>
 <p>
-	全混ぜと名乗っているが、<mark>全部は混ざっていない</mark>。使用デッキはEIK・WM・FL・WA・FR・NL・BI・P・C・Oである。GデッキZデッキ売ってるところあったら教えてください。L
+	全混ぜと名乗っているが、<mark>全部は混ざっていない</mark>。使用デッキはEIK・WM・FL・WA・FR・NL・BI・P・C・O。最近ZデッキとGデッキも導入しました。L
 	デッキは入れません。Xデッキは入れるときもあれば入れないときもあり、使用する場合は「＋Xデッキ」と明記する。泥沼も同様。
 </p>
 <h2 class="green-text text-darken-1">EIK</h2>
@@ -43,6 +43,10 @@
 <h2 class="green-text text-darken-1">しおれた彫刻家</h2>
 <p>
 	不慮の事故によって彫刻家が水に濡れてしおれてしまった。
+</p>
+<h2 class="green-text text-darken-1">サル</h2>
+<p>
+	頭が弱い人。
 </p>
 <h2 class="green-text text-darken-1">0点盤面</h2>
 <p>
