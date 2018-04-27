@@ -47,7 +47,7 @@
 		echo Html::meta($ogp);
 	?>
 </head>
-<body>
+<body class="grey lighten-5">
 <header class="navbar-fixed">
 	<nav>
 		<div class="nav-wrapper orange">

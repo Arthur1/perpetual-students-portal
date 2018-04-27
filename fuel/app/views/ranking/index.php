@@ -1,6 +1,7 @@
 <h1 class="orange-text text-darken-1">統計</h1>
 <p>
-	ぶらつき学生ポータルに登録されたデータから算出しています。
+	ぶらつき学生ポータルに登録されたデータから算出しています。<br>
+	全カードの評価一覧は<?= Html::anchor('cards/opinions', 'こちら'); ?>
 </p>
 <div class="row">
 	<div class="col s12 l6">

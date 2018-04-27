@@ -400,4 +400,76 @@ class Controller_Cards extends Controller_Template
 		$this->template->contents = View::forge('cards/success');
 		$this->template->contents->card_id = $card_id;
 	}
+
+	public function action_opinions()
+	{
+		$this->template->title = 'カード評価一覧';
+		$this->template->description = '「ぶらつき学生ポータル」に登録されたカード評価を集計したランキングです。';
+		$this->template->contents = View::forge('cards/opinions');
+		Asset::js(['jquery.tablesorter.min.js', 'opinions.js'], [], 'add_js');
+
+		$occupations_avg_query = DB::query('
+			SELECT card_id, japanese_name, average
+			FROM cards_occupations
+			INNER JOIN (
+				SELECT cards_opinions.card_id, AVG(points) AS average
+				FROM cards_opinions
+				JOIN cards_list
+				ON cards_opinions.card_id = cards_list.card_id
+				WHERE cards_list.type collate utf8mb4_general_ci = "occupations"
+				GROUP BY cards_opinions.card_id
+			) opinions
+			ON cards_occupations.occupation_id = opinions.card_id
+			ORDER BY card_id asc
+		');
+		$occupations_avg_data = $occupations_avg_query->execute()->as_array();
+		$occupations_data = array_column($occupations_avg_data, null, 'card_id');
+		$occupations_ids = array_keys($occupations_data);
+		$occupations_records_query = DB::select('user_id', 'card_id', 'points')
+										->from('cards_opinions')
+										->where('card_id', 'in', $occupations_ids);
+		$occupations_records = $occupations_records_query->execute()->as_array();
+		foreach ($occupations_records as $record)
+		{
+			$occupations_data[$record['card_id']][$record['user_id']] = $record['points'];
+		}
+		$this->template->contents->occupations_data = $occupations_data;
+
+		$improvements_avg_query = DB::query('
+			SELECT card_id, japanese_name, average
+			FROM cards_improvements
+			INNER JOIN (
+				SELECT cards_opinions.card_id, AVG(points) AS average
+				FROM cards_opinions
+				JOIN cards_list
+				ON cards_opinions.card_id = cards_list.card_id
+				WHERE cards_list.type collate utf8mb4_general_ci = "improvements"
+				AND cards_list.card_id NOT IN ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "M001", "M002", "M003", "M004", "M005", "M006", "M007", "M008", "M009", "M010", "M011", "M012", "M013", "M014")
+				GROUP BY cards_opinions.card_id
+			) opinions
+			ON cards_improvements.improvement_id = opinions.card_id
+			ORDER BY card_id asc
+		');
+		$improvements_avg_data = $improvements_avg_query->execute()->as_array();
+		$improvements_data = array_column($improvements_avg_data, null, 'card_id');
+		$improvements_ids = array_keys($improvements_data);
+		$improvements_records_query = DB::select('user_id', 'card_id', 'points')
+										->from('cards_opinions')
+										->where('card_id', 'in', $improvements_ids);
+		$improvements_records = $improvements_records_query->execute()->as_array();
+		foreach ($improvements_records as $record)
+		{
+			$improvements_data[$record['card_id']][$record['user_id']] = $record['points'];
+		}
+		$this->template->contents->improvements_data = $improvements_data;
+
+		$users_query = DB::select('cards_opinions.user_id', 'screen_name')
+						->from('cards_opinions')
+						->join('users_profile')
+						->on('cards_opinions.user_id', '=', 'users_profile.user_id')
+						->group_by('cards_opinions.user_id');
+		$users_data = $users_query->execute()->as_array();
+		$users = array_column($users_data, 'screen_name', 'user_id');
+		$this->template->contents->users = $users;
+	}
 }
