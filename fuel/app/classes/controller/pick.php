@@ -19,6 +19,7 @@ class Controller_Pick extends Controller_Template
 			$improvements_record = DB::select('improvement_id')
 								->from('cards_improvements')
 								->where('improvement_id', 'not in', $major_improvements)
+								->and_where('improvement_id', 'NOT LIKE', 'M%')
 								->execute()->as_array();
 			$occupations_key = array_rand($occupations_record, 7);
 			$improvements_key = array_rand($improvements_record, 7);
@@ -36,7 +37,7 @@ class Controller_Pick extends Controller_Template
 			$params_str .= '|';
 			$params_str .= implode('|', $improvements);
 			$params_compressed = gzdeflate($params_str);
-			Response::redirect('pick/vote?p='.urlencode($params_compressed));
+			Response::redirect('pick/vote?p='.urlencode($params_compressed).'&o='.random_int(1, 5));
 		}
 	}
 

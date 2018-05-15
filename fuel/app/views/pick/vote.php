@@ -2,8 +2,12 @@
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <?= Html::anchor(Uri::create('https://twitter.com/share', [], ['url' => Uri::create('pick/vote', [], Input::get()), 'hashtags' => 'ぶらつき学生ポータル']), 'Tweet', ['class' => 'twitter-share-button', 'data-show-count' => 'false']); ?>
 <p>
-	投票機能はまだ実装していません。
+	投票機能はまだ実装していません。旧版5グリを想定しています。
 </p>
+<dl>
+	<dt class="green-text">あなたの手番</dt>
+	<dd><?= Input::get('o'); ?>番手</dd>
+</dl>
 <div class="row">
 	<div class="col s12 m6">
 		<h3 class="yellow-text text-darken-2">職業</h3>
