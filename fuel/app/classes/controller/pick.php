@@ -73,7 +73,7 @@ class Controller_Pick extends Controller_Template
 		$params = explode('|', $params_str);
 		if (count($params) !== 14) throw new HttpNotFoundException;
 		$this->template->description = '拡張入りアグリコラのピックシミュレーターです';
-		$this->template->ogp_image_large2 = 'pick/image/?p='.urlencode($params_compressed).'&o='.Input::get('o');
+		$this->template->ogp_image_large2 = 'pick/image.png?p='.urlencode($params_compressed).'&o='.Input::get('o');
 		$occupations = [];
 		$improvements = [];
 		for ($i = 0; $i < 7; $i++)
