@@ -131,7 +131,8 @@ class Controller_Pick extends Controller_Template
 			{
 				$occupations_query->execute();
 				$improvements_query->execute();
-				Response::redirect('pick/success');
+				Session::set_flash('message', '投票完了しました。ご協力ありがとうございました。');
+				Response::redirect('pick/vote?p='.urlencode($params_compressed).'&o='.Input::get('o'));
 			}
 			catch (\DatabaseException $e)
 			{
@@ -140,12 +141,6 @@ class Controller_Pick extends Controller_Template
 			}
 		}
 
-	}
-
-	public function action_success()
-	{
-		$this->template->title = '投票成功';
-		$this->template->contents = View::forge('pick/success');
 	}
 
 	public function action_image()
