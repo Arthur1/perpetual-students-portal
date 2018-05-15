@@ -69,11 +69,12 @@ class Controller_Pick extends Controller_Template
 			'MF' => 'Fデッキ(泥沼からの出発)',
 		];
 		$params_compressed = Input::get('p');
+		$params_compressed_encoded = urlencode($params_compressed);
 		$params_str = gzinflate($params_compressed);
 		$params = explode('|', $params_str);
 		if (count($params) !== 14) throw new HttpNotFoundException;
 		$this->template->description = '拡張入りアグリコラのピックシミュレーターです';
-		$this->template->ogp_image_large2 = 'pick/image.png?p='.urlencode($params_compressed).'&o='.Input::get('o');
+		$this->template->ogp_image_large2 = 'pick/image.png?p='.$params_compressed_encoded.'&o='.Input::get('o');
 		$occupations = [];
 		$improvements = [];
 		for ($i = 0; $i < 7; $i++)
@@ -116,23 +117,23 @@ class Controller_Pick extends Controller_Template
 				return;
 			}
 			$occupations_query = DB::insert('pick_occupations')
-									->columns(['occupation_id', 'is_picked']);
+									->columns(['occupation_id', 'is_picked', 'params', 'order']);
 			$improvements_query = DB::insert('pick_improvements')
-									->columns(['improvement_id', 'is_picked']);
+									->columns(['improvement_id', 'is_picked', 'params', 'order']);
 			foreach ($occupations as $occupation)
 			{
-				$occupations_query->values([$occupation, $occupation === Input::post('occupation')]);
+				$occupations_query->values([$occupation, $occupation === Input::post('occupation'), $params_compressed_encoded, Input::get('o')]);
 			}
 			foreach ($improvements as $improvement)
 			{
-				$improvements_query->values([$improvement, $improvement === Input::post('improvement')]);
+				$improvements_query->values([$improvement, $improvement === Input::post('improvement'), $params_compressed_encoded, Input::get('o')]);
 			}
 			try
 			{
 				$occupations_query->execute();
 				$improvements_query->execute();
 				Session::set_flash('message', '投票完了しました。ご協力ありがとうございました。');
-				Response::redirect('pick/vote?p='.urlencode($params_compressed).'&o='.Input::get('o'));
+				Response::redirect('pick/vote?p='.$params_compressed_encoded.'&o='.Input::get('o'));
 			}
 			catch (\DatabaseException $e)
 			{
