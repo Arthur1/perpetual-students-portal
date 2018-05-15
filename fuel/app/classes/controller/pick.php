@@ -72,6 +72,8 @@ class Controller_Pick extends Controller_Template
 		$params_str = gzinflate($params_compressed);
 		$params = explode('|', $params_str);
 		if (count($params) !== 14) throw new HttpNotFoundException;
+		$this->template->description = '拡張入りアグリコラのピックシミュレーターです';
+		$this->template->ogp_image_large2 = 'pick/image/?p='.urlencode($params_compressed).'&o='.Input::get('o');
 		$occupations = [];
 		$improvements = [];
 		for ($i = 0; $i < 7; $i++)
@@ -144,5 +146,49 @@ class Controller_Pick extends Controller_Template
 	{
 		$this->template->title = '投票成功';
 		$this->template->contents = View::forge('pick/success');
+	}
+
+	public function action_image()
+	{
+		$params_compressed = Input::get('p');
+		$params_str = gzinflate($params_compressed);
+		$params = explode('|', $params_str);
+		if (count($params) !== 14) throw new HttpNotFoundException;
+		$occupations = [];
+		$improvements = [];
+		for ($i = 0; $i < 7; $i++)
+		{
+			$occupations[] = $params[$i];
+		}
+		for ($i = 7; $i < 14; $i++)
+		{
+			$improvements[] = $params[$i];
+		}
+		$occupations_data = DB::select()
+								->from('cards_occupations')
+								->where('occupation_id', 'in', $occupations)
+								->execute()->as_array();
+		$improvements_data = DB::select()
+								->from('cards_improvements')
+								->where('improvement_id', 'in', $improvements)
+								->execute()->as_array();
+		$img = imagecreatefrompng(DOCROOT.'assets/img/pick_bg.png');
+		$color = imagecolorallocate($img, 10, 10, 10);
+		$font = DOCROOT.'assets/fonts/noto.ttf';
+		for ($i = 0; $i < 7; $i++)
+		{
+			$occupation_text = '［'.$occupations_data[$i]['occupation_id'].'］'.$occupations_data[$i]['japanese_name'];
+			$improvement_text = '［'.$improvements_data[$i]['improvement_id'].'］'.$improvements_data[$i]['japanese_name'];
+			imagettftext($img, 24, 0, 56, 270 + 44 * $i, $color, $font, $occupation_text);
+			imagettftext($img, 24, 0, 558, 270 + 44 * $i, $color, $font, $improvement_text);
+		}
+		imagettftext($img, 24, 0, 309, 155, $color, $font, '全混ぜ');
+		imagettftext($img, 24, 0, 643, 155, $color, $font, Input::get('o').'番手/5人');
+		$this->template = null;
+		$this->response = new Response();
+		$this->response->set_header('Content-Type', 'image/png');
+		imagepng($img);
+		imagedestroy($img);
+		return $this->response;
 	}
 }

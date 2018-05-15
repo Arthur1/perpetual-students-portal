@@ -39,6 +39,11 @@
 			$ogp[] = ['property' => 'twitter:card', 'content' => 'summary'];
 			$ogp[] = ['property' => 'og:image', 'content' => Asset::get_file($ogp_image, 'img')];
 		}
+		elseif (isset($ogp_image_large2))
+		{
+			$ogp[] = ['property' => 'twitter:card', 'content' => 'summary_large_image'];
+			$ogp[] = ['property' => 'og:image', 'content' => Uri::create($ogp_image_large2)];
+		}
 		else
 		{
 			$ogp[] = ['property' => 'twitter:card', 'content' => 'summary'];
