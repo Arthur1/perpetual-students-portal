@@ -73,6 +73,7 @@
 				<li><?= Html::anchor('profile/list', '<i class="material-icons">people</i>部員一覧'); ?></li>
 				<li><?= Html::anchor('cards/list', '<i class="material-icons">find_in_page</i>カード一覧'); ?></li>
 				<li><?= Html::anchor('ranking', '<i class="material-icons">assessment</i>統計'); ?></li>
+				<li><?= Html::anchor('pick', '<i class="material-icons">favorite</i>ピックシミュレーター'); ?></li>
 				<li><?= Html::anchor('document', '<i class="material-icons">description</i>記事'); ?></li>
 				<?php if (Authplus::check([1])): ?>
 				<li><div class="divider"></div></li>
@@ -84,6 +85,7 @@
 				<li><?= Html::anchor('profile/list', '部員一覧'); ?></li>
 				<li><?= Html::anchor('cards/list', 'カード一覧'); ?></li>
 				<li><?= Html::anchor('ranking', '統計'); ?></li>
+				<li><?= Html::anchor('pick', 'ピックシミュ'); ?></li>
 				<li><?= Html::anchor('document', '記事'); ?></li>
 				<?php if (Authplus::check([1])): ?>
 				<li><?= Html::anchor('mypage', 'マイページ'); ?></li>
