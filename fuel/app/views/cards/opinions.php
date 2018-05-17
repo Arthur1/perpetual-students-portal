@@ -18,6 +18,7 @@
 				<th style="cursor:pointer">カード名</th>
 				<th></th>
 				<th style="cursor:pointer">平均</th>
+				<th>初手ピ%</th>
 				<?php foreach ($users as $user_id => $screen_name): ?>
 				<th style="cursor:pointer"><?= mb_strimwidth($screen_name, 0, 10, '…'); ?></span></th>
 				<?php endforeach; ?>
@@ -34,6 +35,7 @@
 				</td>
 				<td><?= Html::anchor('cards/show/'.$record['card_id'], '詳細'); ?></td>
 				<td><?= sprintf('%.2f', round($record['average'], 2)); ?></td>
+				<td><?= sprintf('%d', $record['pick_rate'] * 100); ?></td>
 				<?php foreach ($users as $user_id => $screen_name): ?>
 				<td><?= isset($record[$user_id]) ? $record[$user_id] : '-'; ?></td>
 				<?php endforeach; ?>
@@ -50,6 +52,7 @@
 				<th>カード名</th>
 				<th></th>
 				<th>平均</th>
+				<th>初手ピ%</th>
 				<?php foreach ($users as $user_id => $screen_name): ?>
 				<th><?= mb_strimwidth($screen_name, 0, 10, '…'); ?></span></th>
 				<?php endforeach; ?>
@@ -66,6 +69,7 @@
 				</td>
 				<td><?= Html::anchor('cards/show/'.$record['card_id'], '詳細'); ?></td>
 				<td><?= sprintf('%.2f', round($record['average'], 2)); ?></td>
+				<td><?= sprintf('%d', $record['pick_rate'] * 100); ?></td>
 				<?php foreach ($users as $user_id => $screen_name): ?>
 				<td><?= isset($record[$user_id]) ? $record[$user_id] : '-'; ?></td>
 				<?php endforeach; ?>

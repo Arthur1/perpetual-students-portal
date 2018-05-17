@@ -229,8 +229,16 @@ class Controller_Cards extends Controller_Template
 		{
 			case 'occupation':
 				$game_query->where('occupation_id', '=', $card_id);
+				$pick_query = DB::select('occupation_id', DB::expr('AVG(`is_picked`) AS `pick_rate`'))
+									->from('pick_occupations')
+									->where('occupation_id', '=', $card_id);
 				break;
 			case 'minor_improvement':
+				$game_query->where('improvement_id', '=', $card_id);
+				$pick_query = DB::select('improvement_id', DB::expr('AVG(`is_picked`) AS `pick_rate`'))
+									->from('pick_improvements')
+									->where('improvement_id', '=', $card_id);
+				break;
 			case 'major_improvement':
 				$game_query->where('improvement_id', '=', $card_id);
 				break;
@@ -244,6 +252,7 @@ class Controller_Cards extends Controller_Template
 			$opinions_data = $opinions_query->execute()->as_array();
 			$game_data = $game_query->execute()->as_array();
 			$avg_data = $avg_query->execute()->as_array();
+			$pick_data = isset($pick_query) ? $pick_query->execute()->as_array() : [];
 		}
 		catch (DatabaseException $e)
 		{
@@ -258,7 +267,7 @@ class Controller_Cards extends Controller_Template
 		$this->template->contents->card_data = $card_data[0];
 		$this->template->contents->opinions_data = $opinions_data;
 		$this->template->contents->deck_list = $this->deck_list;
-
+		$this->template->contents->pick_data = $pick_data;
 	}
 
 	public function action_edit($card_id)
@@ -409,7 +418,7 @@ class Controller_Cards extends Controller_Template
 		Asset::js(['jquery.tablesorter.min.js', 'opinions.js'], [], 'add_js');
 
 		$occupations_avg_query = DB::query('
-			SELECT card_id, japanese_name, average
+			SELECT card_id, japanese_name, average, pick_rate
 			FROM cards_occupations
 			INNER JOIN (
 				SELECT cards_opinions.card_id, AVG(points) AS average
@@ -420,6 +429,12 @@ class Controller_Cards extends Controller_Template
 				GROUP BY cards_opinions.card_id
 			) opinions
 			ON cards_occupations.occupation_id = opinions.card_id
+			LEFT OUTER JOIN (
+				SELECT pick_occupations.occupation_id, AVG(is_picked) AS pick_rate
+				FROM pick_occupations
+				GROUP BY pick_occupations.occupation_id
+			) pick
+			ON cards_occupations.occupation_id = pick.occupation_id
 			ORDER BY card_id asc
 		');
 		$occupations_avg_data = $occupations_avg_query->execute()->as_array();
@@ -436,7 +451,7 @@ class Controller_Cards extends Controller_Template
 		$this->template->contents->occupations_data = $occupations_data;
 
 		$improvements_avg_query = DB::query('
-			SELECT card_id, japanese_name, average
+			SELECT card_id, japanese_name, average, pick_rate
 			FROM cards_improvements
 			INNER JOIN (
 				SELECT cards_opinions.card_id, AVG(points) AS average
@@ -448,6 +463,12 @@ class Controller_Cards extends Controller_Template
 				GROUP BY cards_opinions.card_id
 			) opinions
 			ON cards_improvements.improvement_id = opinions.card_id
+			LEFT OUTER JOIN (
+				SELECT pick_improvements.improvement_id, AVG(is_picked) AS pick_rate
+				FROM pick_improvements
+				GROUP BY pick_improvements.improvement_id
+			) pick
+			ON cards_improvements.improvement_id = pick.improvement_id
 			ORDER BY card_id asc
 		');
 		$improvements_avg_data = $improvements_avg_query->execute()->as_array();

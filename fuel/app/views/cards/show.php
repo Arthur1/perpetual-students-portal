@@ -40,6 +40,11 @@
 		平均評価：<span style="font-size: 1.5rem; line-height: 2rem;"><?= sprintf('%.1f', round($average, 1)); ?>点</span>
 	</div>
 	<?php endif; ?>
+	<?php if ($pick_data !== []): ?>
+	<div class="collection-item">
+		初手ピック率：<span style="font-size: 1.5rem; line-height: 2rem;"><?= sprintf('%d', $pick_data[0]['pick_rate'] * 100); ?>%</span>
+	</div>
+	<?php endif; ?>
 <?php foreach ($opinions_data as $record): ?>
 	<div class="collection-item avatar">
 		<div>
