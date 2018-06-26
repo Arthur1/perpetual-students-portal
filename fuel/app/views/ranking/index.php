@@ -124,12 +124,12 @@
 		</table>
 	</div>
 	<div class="col s12 l6">
-		<h2 class="green-text text-darken-1">5グリ全混ぜスコアベスト5</h2>
+		<h2 class="green-text text-darken-1">全混ぜスコアベスト5</h2>
 		<p>
-			5人ゲームが対象です。
+			2～5人ゲームが対象。
 		</p>
 		<table class="bordered">
-			<?php foreach ($high_score_5_all_data as $record): ?>
+			<?php foreach ($high_score_normal_data as $record): ?>
 			<tr>
 				<th><?= $record['ranking']; ?>位</th>
 				<td><?= $record['total_score']; ?>点　<span class="grey-text">(<?= $record['screen_name']; ?>)</span></td>
@@ -139,12 +139,12 @@
 		</table>
 	</div>
 	<div class="col s12 l6">
-		<h2 class="green-text text-darken-1">3泥全混ぜスコアベスト5</h2>
+		<h2 class="green-text text-darken-1">泥沼全混ぜスコアベスト5</h2>
 		<p>
-			3人ゲーム泥沼拡張が対象です。
+			2～5人ゲームが対象。
 		</p>
 		<table class="bordered">
-			<?php foreach ($high_score_3_all_m_data as $record): ?>
+			<?php foreach ($high_score_m_data as $record): ?>
 			<tr>
 				<th><?= $record['ranking']; ?>位</th>
 				<td><?= $record['total_score']; ?>点　<span class="grey-text">(<?= $record['screen_name']; ?>)</span></td>

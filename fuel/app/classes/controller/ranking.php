@@ -155,7 +155,7 @@ class Controller_Ranking extends Controller_Template
 		$player_rank_avg_data = $player_rank_avg_query->execute()->as_array();
 		$this->template->contents->player_rank_avg_data = $this->rank($player_rank_avg_data, 'average');
 
-		$high_score_5_all_query = DB::query('
+		$high_score_normal_query = DB::query('
 			SELECT result_score.game_id, result_score.player_order, total_score, player_num, regulation, screen_name
 			FROM result_score
 			INNER JOIN result_overview
@@ -165,15 +165,15 @@ class Controller_Ranking extends Controller_Template
 			AND result_score.player_order = result_players.player_order
 			INNER JOIN users_profile
 			ON result_players.player_id = users_profile.user_id
-			WHERE player_num = 5
+			WHERE player_num != 1
 			AND regulation = "全混ぜ"
 			ORDER BY total_score DESC
 			LIMIT 5;
 		');
-		$high_score_5_all_data = $high_score_5_all_query->execute()->as_array();
-		$this->template->contents->high_score_5_all_data = $this->rank($high_score_5_all_data, 'total_score');
+		$high_score_normal_data = $high_score_normal_query->execute()->as_array();
+		$this->template->contents->high_score_normal_data = $this->rank($high_score_normal_data, 'total_score');
 
-		$high_score_3_all_m_query = DB::query('
+		$high_score_m_query = DB::query('
 			SELECT result_score.game_id, result_score.player_order, total_score, player_num, regulation, screen_name
 			FROM result_score
 			INNER JOIN result_overview
@@ -183,13 +183,13 @@ class Controller_Ranking extends Controller_Template
 			AND result_score.player_order = result_players.player_order
 			INNER JOIN users_profile
 			ON result_players.player_id = users_profile.user_id
-			WHERE player_num = 3
+			WHERE player_num != 1
 			AND regulation = "全混ぜ+泥沼"
 			ORDER BY total_score DESC
 			LIMIT 5;
 		');
-		$high_score_3_all_m_data = $high_score_3_all_m_query->execute()->as_array();
-		$this->template->contents->high_score_3_all_m_data = $this->rank($high_score_3_all_m_data, 'total_score');
+		$high_score_m_data = $high_score_m_query->execute()->as_array();
+		$this->template->contents->high_score_m_data = $this->rank($high_score_m_data, 'total_score');
 	}
 
 	private function rank($data, $column)
