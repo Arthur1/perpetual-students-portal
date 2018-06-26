@@ -190,14 +190,55 @@ class Controller_Ranking extends Controller_Template
 		');
 		$high_score_m_data = $high_score_m_query->execute()->as_array();
 		$this->template->contents->high_score_m_data = $this->rank($high_score_m_data, 'total_score');
+
+		$score_avg_query = DB::query('
+			SELECT * FROM (
+				SELECT AVG(total_score) AS average, result_players.player_id
+				FROM result_score
+				INNER JOIN result_players ON result_score.game_id = result_players.game_id
+				AND result_score.player_order = result_players.player_order
+				INNER JOIN result_overview ON result_score.game_id = result_overview.game_id
+				WHERE
+				result_overview.player_num != 1
+				AND
+				result_overview.regulation = "全混ぜ"
+				GROUP BY result_players.player_id
+				HAVING COUNT(*) >= 2
+			) average_table
+			JOIN users_profile ON average_table.player_id = users_profile.user_id
+			ORDER BY average DESC
+			LIMIT 5
+		');
+		$score_avg_data = $score_avg_query->execute()->as_array();
+		$this->template->contents->score_avg_data = $this->rank($score_avg_data, 'average');
+		$score_avg_m_query = DB::query('
+			SELECT * FROM (
+				SELECT AVG(total_score) AS average, result_players.player_id
+				FROM result_score
+				INNER JOIN result_players ON result_score.game_id = result_players.game_id
+				AND result_score.player_order = result_players.player_order
+				INNER JOIN result_overview ON result_score.game_id = result_overview.game_id
+				WHERE
+				result_overview.player_num != 1
+				AND
+				result_overview.regulation = "全混ぜ+泥沼"
+				GROUP BY result_players.player_id
+				HAVING COUNT(*) >= 2
+			) average_table
+			JOIN users_profile ON average_table.player_id = users_profile.user_id
+			ORDER BY average DESC
+			LIMIT 5
+		');
+		$score_avg_m_data = $score_avg_m_query->execute()->as_array();
+		$this->template->contents->score_avg_m_data = $this->rank($score_avg_m_data, 'average');
 	}
 
 	private function rank($data, $column)
 	{
-		$i = count($data);
+		$j = count($data);
 		$rank = 0;
 		$stack = 0;
-		for ($i = 0; $i < 5; $i++)
+		for ($i = 0; $i < $j; $i++)
 		{
 			if ($i === 0 or $data[$i][$column] !== $data[$i - 1][$column])
 			{

@@ -139,7 +139,7 @@
 		</table>
 	</div>
 	<div class="col s12 l6">
-		<h2 class="green-text text-darken-1">泥沼全混ぜスコアベスト5</h2>
+		<h2 class="green-text text-darken-1">全混ぜ泥沼スコアベスト5</h2>
 		<p>
 			2～5人ゲームが対象。
 		</p>
@@ -149,6 +149,36 @@
 				<th><?= $record['ranking']; ?>位</th>
 				<td><?= $record['total_score']; ?>点　<span class="grey-text">(<?= $record['screen_name']; ?>)</span></td>
 				<td><?= Html::anchor('result/article/'.$record['game_id'].'#player'.$record['player_order'], '詳細'); ?></td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+	</div>
+	<div class="col s12 l6">
+		<h2 class="green-text text-darken-1">全混ぜスコア平均ベスト5</h2>
+		<p>
+			2～5人ゲームが対象。
+		</p>
+		<table class="bordered">
+			<?php foreach ($score_avg_data as $record): ?>
+			<tr>
+				<th><?= $record['ranking']; ?>位</th>
+				<td><?= $record['screen_name']; ?>　<span class="grey-text">(<?= sprintf('%.2f', round($record['average'], 2)); ?>点)</span></td>
+				<td><?= Html::anchor('profile/show/'.$record['user_id'], '詳細'); ?></td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+	</div>
+	<div class="col s12 l6">
+		<h2 class="green-text text-darken-1">全混ぜ泥沼スコア平均ベスト5</h2>
+		<p>
+			2～5人ゲームが対象。
+		</p>
+		<table class="bordered">
+			<?php foreach ($score_avg_m_data as $record): ?>
+			<tr>
+				<th><?= $record['ranking']; ?>位</th>
+				<td><?= $record['screen_name']; ?>　<span class="grey-text">(<?= sprintf('%.2f', round($record['average'], 2)); ?>点)</span></td>
+				<td><?= Html::anchor('profile/show/'.$record['user_id'], '詳細'); ?></td>
 			</tr>
 			<?php endforeach; ?>
 		</table>
