@@ -27,6 +27,7 @@ class Controller_Cards extends Controller_Template
 		'delta' => 'δデッキ(WMデッキ)',
 		'ME' => 'Eデッキ(泥沼からの出発)',
 		'MF' => 'Fデッキ(泥沼からの出発)',
+		'TT' => 'TTデッキ(オリジナル)',
 	];
 
 	private $form_deck_list = [
@@ -59,6 +60,9 @@ class Controller_Cards extends Controller_Template
 			'ME' => 'Eデッキ(泥沼)',
 			'MF' => 'Fデッキ',
 			'M' => 'EF両方',
+		],
+		'オリジナル' => [
+			'TT' => 'TTデッキ',
 		],
 	];
 

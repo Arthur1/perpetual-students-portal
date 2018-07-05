@@ -137,6 +137,7 @@ class Controller_Result extends Controller_Template
 			'delta' => 'δデッキ(WMデッキ)',
 			'ME' => 'Eデッキ(泥沼からの出発)',
 			'MF' => 'Fデッキ(泥沼からの出発)',
+			'TT' => 'TTデッキ(オリジナル)',
 		];
 	}
 

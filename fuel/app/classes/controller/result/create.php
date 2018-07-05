@@ -17,7 +17,8 @@ class Controller_Result_Create extends Controller_Template
 		3 => '全混ぜ',
 		4 => '全混ぜ+泥沼',
 		5 => '全混ぜ+Xデッキ',
-		6 => 'リバイズド',
+		6 => '全混ぜ+オリジナル',
+		7 => '全混ぜ+オリジナル+泥沼',
 	];
 
 	public function before()
