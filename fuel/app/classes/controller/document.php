@@ -34,4 +34,11 @@ class Controller_Document extends Controller_Template
 		$this->template->description = '東京工業大学アグリコラサークル「ぶらつき学生連盟」メンバーのアグリコラに関するツイートをまとめています。';
 		$this->template->contents = View::forge('document/tweet');
 	}
+
+	public function action_ttdeck()
+	{
+		$this->template->title = 'TTデッキ';
+		$this->template->description = 'アグリコラオリジナル拡張「TTデッキ」の紹介ページです。';
+		$this->template->contents = View::forge('document/ttdeck');
+	}
 }

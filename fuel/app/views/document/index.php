@@ -4,4 +4,5 @@
 	<?= Html::anchor('document/dictionary', '用語集', ['class' => 'collection-item']); ?>
 	<?= Html::anchor('document/tweet', 'ツイート集', ['class' => 'collection-item']); ?>
 	<?= Html::anchor('document/sekaai', '【アグリコラ民謡】世界には愛人がいない - 歌詞', ['class' => 'collection-item']); ?>
+	<?= Html::anchor('document/ttdeck', 'TTデッキ(オリジナル)', ['class' => 'collection-item']); ?>
 </div>
