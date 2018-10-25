@@ -15,11 +15,13 @@ class Controller_Pick extends Controller_Template
 			$major_improvements = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'M001', 'M002', 'M003', 'M004', 'M005', 'M006', 'M007', 'M008', 'M009', 'M010', 'M011', 'M012', 'M013', 'M014'];
 			$occupations_record = DB::select('occupation_id')
 								->from('cards_occupations')
+								->where('deck', 'NOT LIKE', 'TT')
 								->execute()->as_array();
 			$improvements_record = DB::select('improvement_id')
 								->from('cards_improvements')
 								->where('improvement_id', 'not in', $major_improvements)
 								->and_where('improvement_id', 'NOT LIKE', 'M%')
+								->and_where('deck', 'NOT LIKE', 'TT')
 								->execute()->as_array();
 			$occupations_key = array_rand($occupations_record, 7);
 			$improvements_key = array_rand($improvements_record, 7);
@@ -67,6 +69,7 @@ class Controller_Pick extends Controller_Template
 			'delta' => 'δデッキ(WMデッキ)',
 			'ME' => 'Eデッキ(泥沼からの出発)',
 			'MF' => 'Fデッキ(泥沼からの出発)',
+			'TT' => 'TTデッキ(オリジナル)',
 		];
 		$params_compressed = Input::get('p');
 		$params_compressed_encoded = urlencode($params_compressed);

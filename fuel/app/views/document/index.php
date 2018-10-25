@@ -5,4 +5,5 @@
 	<?= Html::anchor('document/tweet', 'ツイート集', ['class' => 'collection-item']); ?>
 	<?= Html::anchor('document/sekaai', '【アグリコラ民謡】世界には愛人がいない - 歌詞', ['class' => 'collection-item']); ?>
 	<?= Html::anchor('document/ttdeck', 'TTデッキ(オリジナル)', ['class' => 'collection-item']); ?>
+	<?= Html::anchor('book', '「教養特論：アグリコラ拡張学」特設ページ', ['class' => 'collection-item']); ?>
 </div>

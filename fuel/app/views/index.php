@@ -9,12 +9,16 @@
 			<div class="card-content">
 				<span class="card-title green-text text-darken-1">更新履歴</span>
 				<dl>
+					<dt>2018/10/26</dt>
+					<dd><?= Html::anchor('book', '「教養特論：アグリコラ拡張学」特設ページ'); ?>を公開しました！</dd>
+					<dt>2018/10/26</dt>
+					<dd><?= Html::anchor('pick', '初手ピックシミュレーター'); ?>の不具合を改修しました。ご迷惑をおかけしました。</dd>
 					<dt>2018/07/08</dt>
 					<dd><?= Html::anchor('document/ttdeck', 'TTデッキ'); ?>を公開しました！</dd>
-					<dt>2018/05/16</dt>
-					<dd><?= Html::anchor('pick', '初手ピックシミュレーター'); ?>を追加しました！拡張アグリコラのピックを体験できます！</dd>
-					<dt>2018/04/28</dt>
-					<dd><?= Html::anchor('cards/opinions', 'カード評価一覧'); ?>を追加しました！カード評価をまとめて確認できます。</dd>
+					<!--<dt>2018/05/16</dt>
+					<dd><?= Html::anchor('pick', '初手ピックシミュレーター'); ?>を追加しました！拡張アグリコラのピックを体験できます！</dd>-->
+					<!--<dt>2018/04/28</dt>
+					<dd><?= Html::anchor('cards/opinions', 'カード評価一覧'); ?>を追加しました！カード評価をまとめて確認できます。</dd>-->
 					<!--<dt>2018/02/03</dt>
 					<dd><?= Html::anchor('ranking', '統計'); ?>を追加しました！各種ランキングを確認できます。</dd>-->
 					<!--<dt>2018/02/01</dt>
@@ -28,6 +32,8 @@
 		</div>
 	</div>
 	<div class="col s12 m6">
+		<h2 class="pink-text text-darken-1">アグリコラ拡張本「教養特論：アグリコラ拡張学」</h2>
+		<p>特設ページは<?= Html::anchor('book', 'こちら'); ?></p>
 		<h2 class="green-text text-darken-1">リンク集</h2>
 		<div class="collection">
 			<a href="http://www.nicovideo.jp/watch/sm31916243" target="_blank" class="collection-item">愛人と骨細工でBEMYBABY</a>
