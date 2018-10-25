@@ -46,16 +46,16 @@
 <h2 class="green-text text-darken-1">ギャラリー</h2>
 <div class="row">
 	<div class="col s12 m6">
-		<?= Asset::img('top.png', ['alt' => '表紙', 'class' => 'responsive-img']); ?>
+		<?= Asset::img('book/top.png', ['alt' => '表紙', 'class' => 'responsive-img']); ?>
 	</div>
 	<div class="col s12 m6">
-		<?= Asset::img('prev1.jpg', ['alt' => '見本1', 'class' => 'responsive-img']); ?>
+		<?= Asset::img('book/prev1.jpg', ['alt' => '見本1', 'class' => 'responsive-img']); ?>
 	</div>
 	<div class="col s12 m6">
-		<?= Asset::img('prev2.jpg', ['alt' => '見本2', 'class' => 'responsive-img']); ?>
+		<?= Asset::img('book/prev2.jpg', ['alt' => '見本2', 'class' => 'responsive-img']); ?>
 	</div>
 	<div class="col s12 m6">
-		<?= Asset::img('prev3.jpg', ['alt' => '見本3', 'class' => 'responsive-img']); ?>
+		<?= Asset::img('book/prev3.jpg', ['alt' => '見本3', 'class' => 'responsive-img']); ?>
 	</div>
 </div>
 <h2 class="green-text text-darken-1">連絡先</h2>
