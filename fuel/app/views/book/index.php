@@ -53,6 +53,17 @@
 <p>
 	他にも細かいけど役に立つコラムからおもしろ情報まで盛りだくさんな一冊です！
 </p>
+<h2 class="green-text text-darken-1">読者特典</h2>
+<div class="row">
+	<div class="col s12 m8">
+		<p>
+			本書を読んでくださったみなさまへのお礼として、拡張入りアグリコラで使えるランダマイザWebアプリをご用意いたしました！EIKおなじみ獣医などのランダムピックはこのアプリだけで解決！詳しくは本書のp.94をご覧ください。
+		</p>
+	</div>
+	<div class="col s12 m4">
+		<?= Asset::img('book/app.gif', ['alt' => 'アプリアニメーション', 'class' => 'responsive-img']); ?>
+	</div>
+</div>
 <h2 class="green-text text-darken-1">訂正情報</h2>
 <p>
 	初版にて現在判明している訂正情報を掲載します。心よりお詫び申し上げます。
