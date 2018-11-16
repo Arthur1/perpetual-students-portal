@@ -53,6 +53,26 @@
 <p>
 	他にも細かいけど役に立つコラムからおもしろ情報まで盛りだくさんな一冊です！
 </p>
+<h2 class="green-text text-darken-1">訂正情報</h2>
+<p>
+	初版にて現在判明している訂正情報を掲載します。心よりお詫び申し上げます。
+</p>
+<h3 class="light-green-text text-darken-1">p.75</h3>
+<p>
+	ページ下部のResultの表の内容を以下の通り訂正します。
+</p>
+<p>
+	誤）木の束：-5　正）木の束：<span class="red-text">-3</span><br>
+	誤）ボーナス点小計：-14　正）ボーナス点小計：<span class="red-text">-12</span><br>
+	誤）合計点：-462点　正）合計点：<span class="red-text">-460点</span>
+</p>
+<h3 class="light-green-text text-darken-1">p.77</h3>
+<p>
+	ページ下部の「6825-3 ゲストルーム」の内容を以下の通り訂正します。
+</p>
+<p>
+	誤）(職業4+)　正）<span class="red-text">(小進歩)</span>
+</p>
 <h2 class="green-text text-darken-1">ギャラリー</h2>
 <div class="row">
 	<div class="col s12 m6">
@@ -68,7 +88,7 @@
 <h2 class="green-text text-darken-1">Q&A</h2>
 <h3 class="light-green-text text-darken-1">Q.ゲームマーケット当日は製作者に会えますか？</h3>
 <p>
-	残念ながらArthurは2日間とも用事があるので、頒布はピンゾロゲームス(日-E60)に委託しております。もしご用がございましたら、Twitter(<a href="https://twitter.com/aaron_teleneco" target="_blank">@aaron_teleneco</a>)までご連絡いただくか、一橋大学国立キャンパスにお越しください。
+	A.残念ながらArthurは2日間とも用事があるので、頒布はピンゾロゲームス(日-E60)に委託しております。もしご用がございましたら、Twitter(<a href="https://twitter.com/aaron_teleneco" target="_blank">@aaron_teleneco</a>)までご連絡いただくか、一橋大学国立キャンパスにお越しください。
 </p>
 <h3 class="light-green-text text-darken-1">Q.電子書籍での頒布はありますか？</h3>
 <p>
