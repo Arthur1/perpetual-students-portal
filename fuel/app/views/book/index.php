@@ -19,25 +19,16 @@
 <h2 class="green-text text-darken-1">頒布情報</h2>
 <h3 class="yellow-text text-darken-2">ゲームマーケット</h3>
 <p>
-	ゲームマーケット2018秋の2日目にピンゾロゲームスのブースにて頒布いたします。ピンゾロゲームスでは、旧作の「収束判定ゲーム」「Thunder Chase」「協同開発」も頒布しますので、こちらもぜひお求めください。少部数のご用意となりますので、確実にゲームマーケットにて手に入れたい方はご予約をおすすめします。
+	ゲームマーケット2018秋の2日目にピンゾロゲームスのブースにて頒布いたしましたところ、14時ごろに完売いたしました。ご好評いただきましてありがとうございました。また、売り切れのために手に入らなかった皆さまにはご迷惑をおかけしました。以下に記載する通販をご利用ください。
 </p>
-<dl>
-	<dt class="green-text text-darken-1">日時</dt>
-	<dd>2018年11月25日(日)</dd>
-	<dt class="green-text text-darken-1">場所</dt>
-	<dd>東京ビッグサイト</dd>
-	<dt class="green-text text-darken-1">サークル名</dt>
-	<dd>ピンゾロゲームス</dd>
-	<dt class="green-text text-darken-1">ブース番号</dt>
-	<dd>2018秋 日-E60</dd>
-	<dt class="green-text text-darken-1">頒価</dt>
-	<dd>500円</dd>
-	<dt class="green-text text-darken-1">予約</dt>
-	<dd><a href="https://docs.google.com/forms/d/e/1FAIpQLSd2h7vOle995i2hcMN0cBzy5556FD-aH52LaQgdlfyR4q1KMg/viewform?usp=sf_link" target="_blank">予約フォーム</a>をご利用ください。</dd>
-</dl>
 <h3 class="yellow-text text-darken-2">通販</h3>
 <p>
-	遠方の方や、都合がつかずゲームマーケットにお越しいただけない方に、BOOTHを利用した頒布を行う予定です。詳細は決まり次第お伝えいたします。
+	遠方の方や、都合がつかずゲームマーケットにお越しいただけない方に、BOOTHを利用した頒布を行います。
+</p>
+<p>
+	受付開始：12/1(土)0時より<br>
+	頒価：600円(梱包材・手数料含めると赤字になってしまうので、ゲムマ頒価より100円値上げさせていただきます)<br>
+	URL：受付開始までお待ちください
 </p>
 <p>
 	※Arthur、ansainと直接会う機会のあるお知り合いの皆さまには、直接手渡しも可能です。
@@ -68,9 +59,25 @@
 <p>
 	初版にて現在判明している訂正情報を掲載します。心よりお詫び申し上げます。
 </p>
+<h3 class="light-green-text text-darken-1">p.11</h3>
+<p>
+	最下部の「Č03 ゼネラリスト」
+</p>
+<p>
+	誤）Arthur(通常5：3点　泥沼3：2点)<br>
+	正）Arthur(通常5：3点)
+</p>
+<h3 class="light-green-text text-darken-1">p.25</h3>
+<p>
+	上から3番目の「P09 害虫駆除女」と4番目の「P10 教授」
+</p>
+<p>
+	誤）NLデッキ<br>
+	正）<span class="red-text">π</span>デッキ
+</p>
 <h3 class="light-green-text text-darken-1">p.75</h3>
 <p>
-	ページ下部のResultの表の内容を以下の通り訂正します。
+	ページ下部のResultの表の内容
 </p>
 <p>
 	誤）木の束：-5　正）木の束：<span class="red-text">-3</span><br>
@@ -79,10 +86,22 @@
 </p>
 <h3 class="light-green-text text-darken-1">p.77</h3>
 <p>
-	ページ下部の「6825-3 ゲストルーム」の内容を以下の通り訂正します。
+	ページ下部の「6825-3 ゲストルーム」
 </p>
 <p>
 	誤）(職業4+)　正）<span class="red-text">(小進歩)</span>
+</p>
+<h3 class="light-green-text text-darken-1">p.81</h3>
+<p>
+	誤）出来高労働者[]<br>
+	正）出来高労働者[<span class="red-text">268</span>]
+</p>
+<h3 class="light-green-text text-darken-1">p.91</h3>
+<p>
+	誤）白いブラジル人[]BI17 p.10<br>
+	　　人工の丘[NL029]<br>
+	正）白いブラジル人<span class="red-text">[BI17]</span> p.10<br>
+	　　人工の丘[NL029] <span class="red-text">p.44</span>
 </p>
 <h2 class="green-text text-darken-1">ギャラリー</h2>
 <div class="row">
