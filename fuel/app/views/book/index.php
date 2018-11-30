@@ -28,7 +28,7 @@
 <p>
 	受付開始：12/1(土)0時より<br>
 	頒価：600円(梱包材・手数料含めると赤字になってしまうので、ゲムマ頒価より100円値上げさせていただきます)<br>
-	URL：受付開始までお待ちください
+	URL：<a href="https://buratsuki.booth.pm/items/1109591" target="_blank">https://buratsuki.booth.pm/items/1109591</a>
 </p>
 <p>
 	※Arthur、ansainと直接会う機会のあるお知り合いの皆さまには、直接手渡しも可能です。
